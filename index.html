@@ -5,98 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florian | Perspectives</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Poppins pour la lecture, Syne pour l'aspect architectural et robuste -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Hiérarchie des polices demandée -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Hind+Vadodara:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --dark-gray: #383838;
-            --light-green: #A0E8DF;
+            /* Tes couleurs de marque */
+            --brand-light-green: #A0E8DF;
             --brand-blue: #00A8BA;
-            --dark-green: #0A6670;
-            --bg-midnight: #06161a; 
+            --brand-dark-green: #0A6670;
+            
+            /* Nouvelle proposition de fond : Slate Navy (Bleu Ardoise Profond) */
+            --bg-color: #0F172A; 
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --border-color: rgba(160, 232, 223, 0.1);
+
+            /* Assignation des polices */
+            --font-title: 'Montserrat', sans-serif;
+            --font-sub: 'Hind Vadodara', sans-serif;
+            --font-text: 'Roboto', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-midnight);
-            background: radial-gradient(circle at 50% 0%, #0f3a44 0%, var(--bg-midnight) 85%);
+            font-family: var(--font-text);
+            background-color: var(--bg-color);
+            background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-color) 100%);
             color: #FFFFFF;
             -webkit-tap-highlight-color: transparent;
         }
 
-        .font-heading {
-            font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
-        }
+        .h1-title { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; }
+        .h3-button { font-family: var(--font-title); font-weight: 700; }
+        .sub-text { font-family: var(--font-sub); }
+        .body-text { font-family: var(--font-text); }
 
-        /* Glassmorphism subtil */
+        /* Cartes & Boutons */
         .glass-card {
-            background: rgba(14, 36, 41, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(160, 232, 223, 0.1);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
         .glass-card:active {
             transform: scale(0.97);
-            background: rgba(20, 50, 56, 0.7);
-        }
-
-        /* Animation du bouton principal (Questionnaire) */
-        @keyframes pulse-v1 {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 168, 186, 0.5); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(0, 168, 186, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 168, 186, 0); }
+            background: rgba(30, 41, 59, 0.8);
         }
 
         .cta-priority {
-            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--dark-green) 100%);
-            animation: pulse-v1 3s infinite;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--brand-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -10px rgba(0, 168, 186, 0.3);
         }
 
-        .logo-shadow {
-            filter: drop-shadow(0 0 10px rgba(160, 232, 223, 0.1));
+        .cta-priority:active {
+            background-color: var(--brand-dark-green);
+        }
+
+        .promo-code {
+            font-family: 'Roboto Mono', monospace;
+            background: rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
-<body class="min-h-screen pb-16">
+<body class="min-h-screen pb-16 antialiased">
 
     <div class="max-w-md mx-auto px-6">
         
         <!-- Header -->
-        <header class="pt-16 pb-12 flex flex-col items-center text-center">
-            <img src="Logo-Perspectives.png" alt="Logo Perspectives" class="h-12 mb-10 object-contain logo-shadow" onerror="this.style.display='none'">
-            
-            <div class="relative mb-6">
-                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--light-green)] shadow-lg">
-                    <img src="Insta profile pic2 2.jpg" alt="Florian" class="w-full h-full object-cover rounded-full" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Florian'">
+        <header class="pt-20 pb-12 flex flex-col items-center text-center">
+            <div class="relative mb-8">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--brand-light-green)] shadow-xl">
+                    <img src="Insta profile pic2 2.jpg" alt="Florian" class="w-full h-full object-cover" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Florian'">
                 </div>
             </div>
             
-            <h1 class="text-3xl font-heading font-800 tracking-tight text-[var(--light-green)]">Florian</h1>
+            <h1 class="text-4xl h1-title tracking-tighter text-[var(--brand-light-green)]">Florian</h1>
             
-            <div class="mt-6 space-y-3 px-4">
-                <p class="text-[14px] text-white font-medium">Consultant digital devenu artisan passionné.</p>
-                <p class="text-[11px] text-slate-400 uppercase tracking-[0.2em] leading-relaxed">
-                     Artisan Rénovation • Créateur de contenus • Consultant transfo. digitale
+            <div class="mt-6 space-y-3 px-2">
+                <p class="text-[15px] sub-text font-medium text-slate-200 leading-relaxed">
+                    Consultant digital devenu artisan passionné.
                 </p>
+                <div class="flex justify-center items-center space-x-3 text-[10px] sub-text font-semibold uppercase tracking-[0.25em] text-slate-400">
+                    <span>Rénovation</span>
+                    <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+                    <span>Outillage</span>
+                    <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+                    <span>Digital</span>
+                </div>
             </div>
         </header>
 
-        <!-- Liste des Liens -->
+        <!-- Grille de Liens -->
         <div class="space-y-4">
             
-            <!-- CTA : Questionnaire Tally -->
-            <a href="https://tally.so/r/RGKbWd" target="_blank" class="cta-priority flex items-center p-6 text-white rounded-[2rem] shadow-xl group">
-                <div class="bg-white/10 p-3 rounded-2xl mr-4 group-hover:bg-white/20 transition-colors">
+            <!-- CTA PRIORITAIRE : Questionnaire Tally -->
+            <a href="https://tally.so/r/RGKbWd" target="_blank" class="cta-priority flex items-center p-6 text-white rounded-3xl group">
+                <div class="bg-white/10 p-3 rounded-2xl mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <div class="flex-1">
-                    <h3 class="font-bold text-sm tracking-tight uppercase">L'application idéale ?</h3>
-                    <p class="text-[11px] opacity-80 font-medium">Répondez au questionnaire (2 min)</p>
+                <div class="flex-1 text-left">
+                    <h3 class="h3-button text-sm tracking-tight uppercase">L'application idéale ?</h3>
+                    <p class="text-[11px] sub-text opacity-90 font-medium">Répondre au questionnaire (2 min)</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
             </a>
@@ -104,72 +117,69 @@
             <!-- Bento Row: Media Kit & Amazon -->
             <div class="grid grid-cols-2 gap-4">
                 <a href="https://beacons.ai/flo_perspectives/mediakit" target="_blank" class="glass-card p-5 rounded-[2rem] flex flex-col justify-between aspect-square">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--brand-blue)]/10 text-[var(--brand-blue)]">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-[var(--brand-blue)]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" /></svg>
                     </div>
                     <div>
-                        <h3 class="font-heading font-700 text-[10px] text-[var(--light-green)] tracking-wider">Media Kit</h3>
-                        <p class="text-[9px] text-slate-400 mt-1 uppercase">Collabs & Pro</p>
+                        <h3 class="h3-button text-[10px] text-[var(--brand-light-green)] tracking-wider">MEDIA KIT</h3>
+                        <p class="text-[9px] sub-text text-slate-400 mt-1 uppercase tracking-tight">Collabs & Pro</p>
                     </div>
                 </a>
 
-                <a href="URL_AMAZON" target="_blank" class="glass-card p-5 rounded-[2rem] flex flex-col justify-between aspect-square">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-orange-500/10 text-orange-400">
+                <a href="https://www.amazon.fr/shop/flo_perspectives?ref_=cm_sw_r_cp_ud_aipsfshop_NBXCJTS7H6DVW9G19T71" target="_blank" class="glass-card p-5 rounded-[2rem] flex flex-col justify-between aspect-square">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-orange-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                     </div>
                     <div>
-                        <h3 class="font-heading font-700 text-[10px] text-[var(--light-green)] tracking-wider">Store Amazon</h3>
-                        <p class="text-[9px] text-slate-400 mt-1 uppercase">Mon matériel</p>
+                        <h3 class="h3-button text-[10px] text-[var(--brand-light-green)] tracking-wider">STORE AMAZON</h3>
+                        <p class="text-[9px] sub-text text-slate-400 mt-1 uppercase tracking-tight">Mon matériel</p>
                     </div>
                 </a>
             </div>
 
-            <!-- Codes Promo -->
+            <!-- Avantages Partenaires -->
             <div class="p-6 rounded-[2rem] glass-card">
                 <div class="flex items-center mb-4">
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-[var(--dark-green)] text-[var(--light-green)]">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-[var(--brand-dark-green)] text-[var(--brand-light-green)]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
                     </div>
-                    <h3 class="text-[11px] font-bold uppercase tracking-widest text-[var(--light-green)]">Avantages Partenaires</h3>
+                    <h3 class="text-[11px] h3-button uppercase tracking-widest text-[var(--brand-light-green)]">Codes Partenaires</h3>
                 </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between p-3 bg-black/30 rounded-2xl border border-white/5">
-                        <div class="flex-1">
-                            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Offre exclusive</p>
-                            <p class="font-mono font-bold text-sm text-[var(--brand-blue)]">FLO10</p>
-                        </div>
-                        <button onclick="copyCode('FLO10', this)" class="bg-[var(--light-green)] text-[var(--dark-gray)] text-[10px] font-bold px-4 py-2 rounded-xl active:scale-95 transition-all">
-                            COPIER
-                        </button>
+                <div class="flex items-center justify-between p-3 bg-black/20 rounded-2xl border border-white/5">
+                    <div class="flex-1">
+                        <p class="text-[9px] body-text font-bold text-slate-500 uppercase tracking-tighter">Offre exclusive</p>
+                        <p class="font-mono font-bold text-sm text-[var(--brand-blue)]">FLO10</p>
                     </div>
+                    <button onclick="copyCode('FLO10', this)" class="bg-[var(--brand-light-green)] text-[#0F172A] text-[10px] h3-button px-5 py-2.5 rounded-xl active:scale-95 transition-all">
+                        COPIER
+                    </button>
                 </div>
             </div>
 
-            <!-- Réseaux Sociaux -->
-            <div class="grid grid-cols-3 gap-3">
-                <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" class="glass-card py-4 rounded-2xl flex flex-col items-center opacity-70 hover:opacity-100">
-                    <svg class="h-5 w-5 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg>
-                    <span class="text-[8px] font-bold">TIKTOK</span>
+            <!-- Socials -->
+            <div class="flex justify-between items-center px-2 py-4">
+                <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" class="p-4 glass-card rounded-full opacity-70 hover:opacity-100">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg>
                 </a>
-                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" target="_blank" class="glass-card py-4 rounded-2xl flex flex-col items-center opacity-70 hover:opacity-100">
-                    <svg class="h-5 w-5 mb-1 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    <span class="text-[8px] font-bold">YOUTUBE</span>
+                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" target="_blank" class="p-4 glass-card rounded-full opacity-70 hover:opacity-100 text-red-500">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/florian-ferry" target="_blank" class="glass-card py-4 rounded-2xl flex flex-col items-center opacity-70 hover:opacity-100">
-                    <svg class="h-5 w-5 mb-1 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    <span class="text-[8px] font-bold">LINKEDIN</span>
+                <a href="https://www.linkedin.com/in/florian-ferry" target="_blank" class="p-4 glass-card rounded-full opacity-70 hover:opacity-100 text-blue-400">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
             </div>
 
         </div>
 
         <!-- Footer -->
-        <footer class="mt-20 flex flex-col items-center border-t border-white/5 pt-10 text-center">
-            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Un projet ? Une collaboration ?</h4>
-            <a href="mailto:flo.perspectives@gmail.com" class="inline-flex items-center bg-white/5 hover:bg-[var(--brand-blue)]/20 px-8 py-4 rounded-full border border-white/10 text-sm font-bold tracking-wide transition-all active:scale-95">
-                <span class="text-[var(--light-green)] mr-2">✉</span> On en discute ?
+        <footer class="mt-16 flex flex-col items-center pt-10 border-t border-white/5 text-center">
+            <h4 class="text-xs sub-text font-bold text-slate-500 uppercase tracking-widest mb-6">Une idée ? Écris-moi.</h4>
+            <a href="mailto:flo.perspectives@gmail.com" class="inline-flex items-center bg-white hover:bg-slate-100 px-10 py-4 rounded-full text-[#0F172A] text-sm h3-button tracking-tight transition-all active:scale-95">
+                On en discute ?
             </a>
-            <p class="text-[9px] font-heading font-700 text-white/10 tracking-[0.4em] uppercase mt-12">© 2026 Florian | Perspectives</p>
+            <p class="mt-12 text-[8px] h1-title text-white/10 tracking-[0.4em]">
+                © 2026 Florian | Perspectives
+            </p>
         </footer>
 
     </div>
@@ -185,13 +195,11 @@
             
             const originalText = btn.innerText;
             btn.innerText = 'COPIÉ';
-            btn.style.backgroundColor = '#0A6670';
-            btn.style.color = '#FFFFFF';
+            btn.style.backgroundColor = 'white';
             
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.style.backgroundColor = '#A0E8DF';
-                btn.style.color = '#383838';
             }, 2000);
         }
     </script>
