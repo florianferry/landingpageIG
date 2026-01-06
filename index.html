@@ -94,6 +94,38 @@
             transform: scale(0.98);
             background-color: var(--brand-dark-green);
         }
+
+        /* Styles miniatures Instagram améliorés */
+        .reel-thumbnail {
+            position: relative;
+            aspect-ratio: 9/16;
+            overflow: hidden;
+            border-radius: 1.25rem;
+            background: #000;
+        }
+
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.85rem;
+        }
+
+        .play-btn-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="min-h-screen pb-16 antialiased">
@@ -135,11 +167,66 @@
                     </svg>
                 </div>
                 <div class="flex-1 text-left z-10">
-                    <h3 class="h3-button text-sm tracking-tight uppercase">L'application idéale ?</h3>
+                    <h3 class="h3-button text-sm tracking-tight uppercase">Bâtissons l'application idéale</h3>
                     <p class="text-[11px] sub-text opacity-90 font-medium">Répondre au questionnaire (2 min)</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
             </a>
+
+            <!-- SECTION VISUELLE : Journal de Bord -->
+            <div class="pt-4 space-y-3">
+                <h2 class="text-[11px] h3-button uppercase tracking-[0.3em] text-slate-500 px-2">Journal de Chantier</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Réel 1 -->
+                    <a href="URL_REEL_1" target="_blank" class="reel-thumbnail interactive-link shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover opacity-80">
+                        <div class="play-btn-overlay">
+                            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="insta-overlay">
+                            <div class="flex justify-end">
+                                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="space-y-0.5">
+                                <div class="flex items-center space-x-1.5">
+                                    <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /></svg>
+                                    <span class="text-[10px] font-bold text-white tracking-wide">12.5k</span>
+                                </div>
+                                <div class="flex items-center space-x-1.5">
+                                    <svg class="w-3 h-3 text-white fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    <span class="text-[10px] font-bold text-white tracking-wide">842</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Réel 2 -->
+                    <a href="URL_REEL_2" target="_blank" class="reel-thumbnail interactive-link shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover opacity-80">
+                        <div class="play-btn-overlay">
+                            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="insta-overlay">
+                            <div class="flex justify-end">
+                                <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="space-y-0.5">
+                                <div class="flex items-center space-x-1.5">
+                                    <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /></svg>
+                                    <span class="text-[10px] font-bold text-white tracking-wide">48k</span>
+                                </div>
+                                <div class="flex items-center space-x-1.5">
+                                    <svg class="w-3 h-3 text-white fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    <span class="text-[10px] font-bold text-white tracking-wide">3.2k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
             <!-- Bento Row: Amazon & Media Kit -->
             <div class="grid grid-cols-2 gap-4">
@@ -164,11 +251,10 @@
                 </a>
             </div>
 
-            <!-- SECTION BONS PLANS & PARTENARIATS -->
+            <!-- SECTION BONS PLANS -->
             <div class="pt-4 space-y-4">
                 <h2 class="text-[11px] h3-button uppercase tracking-[0.3em] text-slate-500 px-2">Bons Plans & Partenariats</h2>
 
-                <!-- Laser Huepar (ManoMano) -->
                 <a href="https://find.ly/2nw" target="_blank" class="glass-card interactive-link flex items-center p-5 rounded-3xl group">
                     <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mr-4 text-[var(--brand-light-green)]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -182,8 +268,7 @@
                     <span class="text-[10px] h3-button text-[var(--brand-blue)] font-bold">VOIR</span>
                 </a>
 
-                <!-- HelloFresh -->
-                <div class="glass-card rounded-[2rem] overflow-hidden">
+                <div class="glass-card rounded-[2rem] overflow-hidden border border-green-500/20">
                     <div class="p-6">
                         <div class="flex items-start justify-between mb-4">
                             <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400">
@@ -197,28 +282,46 @@
                         <p class="text-[11px] sub-text text-slate-400 leading-relaxed mb-4">
                             Repas dès <span class="text-white font-bold">2,99€</span> et votre dessert <span class="text-[var(--brand-light-green)] font-bold">offert à vie</span> sur chaque box.
                         </p>
-                        
-                        <!-- Actions HelloFresh -->
                         <div class="flex flex-col space-y-2">
                             <button onclick="copyCode('HFF4L658', this, 'https://www.filify.co/SHFZP')" class="w-full bg-white text-[#0F172A] text-[11px] h3-button py-3.5 rounded-2xl active:scale-95 transition-all flex items-center justify-center">
                                 <span>COPIER LE CODE & EN PROFITER</span>
                             </button>
-                            <p class="text-[9px] text-center text-slate-600 font-mono">CODE: HFF4L658</p>
+                            <p class="text-[9px] text-center text-slate-600 font-mono tracking-wider">CODE: HFF4L658</p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- NEWSLETTER -->
+            <div class="pt-6">
+                <div class="p-6 glass-card rounded-[2rem] border-dashed border-[var(--brand-blue)]/30">
+                    <h3 class="h3-button text-xs text-[var(--brand-light-green)] uppercase tracking-widest mb-2">Les Perspectives de Flo</h3>
+                    <p class="text-[11px] sub-text text-slate-400 mb-4 leading-relaxed">
+                        Rejoins +1000 personnes pour suivre les coulisses de ma rénovation et l'avancement de l'application.
+                    </p>
+                    <div class="flex space-x-2">
+                        <input type="email" placeholder="Ton email..." class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-[var(--brand-blue)] transition-colors text-white">
+                        <button class="bg-[var(--brand-blue)] text-white px-4 py-2 rounded-xl text-[10px] h3-button uppercase active:scale-95 transition-transform">S'abonner</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Socials -->
-            <div class="flex justify-between items-center px-2 py-4">
-                <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" class="p-4 glass-card rounded-full opacity-80 text-white">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg>
+            <div class="grid grid-cols-5 gap-2 px-2 py-4">
+                <a href="https://instagram.com/flo_perspectives" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-2xl opacity-80 text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" target="_blank" class="p-4 glass-card rounded-full opacity-80 text-red-500">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <a href="https://www.facebook.com/share/1AXEHGkr8V/?mibextid=wwXIfr" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-2xl opacity-80 text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/florian-ferry" target="_blank" class="p-4 glass-card rounded-full opacity-80 text-blue-400">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-2xl opacity-80 text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg>
+                </a>
+                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-2xl opacity-80 text-red-500">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/florian-ferry" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-2xl opacity-80 text-blue-400">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
             </div>
 
