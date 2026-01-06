@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flo Perspectives | Liens & Ressources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8; /* Couleur d'accentuation */
+            --accent-hover: #0ea5e9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+        p.bio { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 32px; line-height: 1.5; }
+
+        .links-gap { display: flex; flex-direction: column; gap: 16px; }
+
+        .link-card {
+            background-color: var(--card-bg);
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+
+        /* Style spécifique pour l'appel à l'action prioritaire */
+        .primary-cta {
+            background-color: var(--accent);
+            color: #000;
+        }
+        .primary-cta:hover {
+            background-color: var(--accent-hover);
+            color: #000;
+        }
+
+        .secondary-label {
+            margin-top: 40px;
+            margin-bottom: 16px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://via.placeholder.com/150" alt="Flo Perspectives" class="profile-img">
+        
+        <h1>Flo Perspectives</h1>
+        <p class="bio">Exploration, analyses et partages. Retrouvez tous mes outils et codes promos ci-dessous.</p>
+
+        <div class="links-gap">
+            <a href="TON_LIEN_QUESTIONNAIRE" class="link-card primary-cta">📋 Répondre au Questionnaire</a>
+
+            <a href="TON_LIEN_AMAZON" class="link-card">📦 Mes indispensables Amazon</a>
+            <a href="TON_LIEN_CODES_PROMO" class="link-card">🏷️ Mes Codes Promos</a>
+            
+            <div class="secondary-label">Professionnel</div>
+            
+            <a href="https://beacons.ai/TON_USER" class="link-card">📊 Media Kit (Stats en temps réel)</a>
+        </div>
+
+        <footer>
+            &copy; 2026 flo-perspectives.com
+        </footer>
+    </div>
+
+</body>
+</html>
