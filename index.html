@@ -3,146 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flo Perspectives | Liens</title>
-    <!-- Tailwind CSS pour un design rapide et moderne -->
+    <title>Flo Perspectives | Liens Officiels</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Poppins pour le corps, Syne comme alternative à Comporta pour le look architectural -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --dark-gray: #383838;
+            --light-green: #A0E8DF;
+            --brand-blue: #00A8BA;
+            --dark-green: #0A6670;
+            --bg-cream: #F9F9F7;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--dark-gray);
+            -webkit-tap-highlight-color: transparent;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+
+        .font-heading {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: -0.02em;
         }
-        .link-card {
-            transition: all 0.2s ease-in-out;
+
+        /* Animation de pulsation pour le bouton prioritaire */
+        @keyframes pulse-custom {
+            0% { box-shadow: 0 0 0 0 rgba(0, 168, 186, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(0, 168, 186, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 168, 186, 0); }
         }
-        .link-card:active {
-            transform: scale(0.97);
-        }
-        /* Animation pour le bouton prioritaire */
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
-        }
+
         .priority-btn {
-            animation: pulse-border 2s infinite;
+            background-color: var(--brand-blue);
+            animation: pulse-custom 2s infinite;
+        }
+
+        .bento-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(56, 56, 56, 0.08);
+        }
+
+        .bento-card:active {
+            transform: scale(0.96);
+        }
+
+        .copy-success {
+            background-color: var(--dark-green) !important;
+            color: white !important;
         }
     </style>
 </head>
-<body class="min-h-screen text-slate-900 pb-12">
+<body class="min-h-screen pb-12">
 
-    <!-- Container principal (Largeur max pour mobile) -->
-    <div class="max-w-md mx-auto px-6 pt-12">
+    <div class="max-w-md mx-auto px-6">
         
-        <!-- Header / Profil -->
-        <header class="flex flex-col items-center mb-10">
-            <div class="w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4">
-                <!-- Utilisation de la photo locale (à uploader sur ton repo GitHub) -->
-                <img src="profile.jpg" alt="Flo Perspectives" class="w-full h-full object-cover" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Flo'">
+        <!-- Header : Logo & Profil -->
+        <header class="pt-12 pb-8 flex flex-col items-center text-center">
+            <!-- Logo -->
+            <img src="Logo-Perspectives.png" alt="Logo Perspectives" class="h-16 mb-6 object-contain" onerror="this.style.display='none'">
+            
+            <div class="relative mb-4">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-md p-1 bg-white">
+                    <img src="Insta profile pic2 2.jpg" alt="Flo Perspectives" class="w-full h-full object-cover rounded-full" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Flo'">
+                </div>
             </div>
-            <h1 class="text-xl font-bold text-slate-800 tracking-tight">@flo_perspectives</h1>
-            <p class="text-slate-500 text-sm mt-1 text-center px-4 leading-relaxed">Créateur de contenus & Futur développeur d'app</p>
+            
+            <h1 class="text-xl font-heading font-800 uppercase text-[var(--dark-gray)]">Flo Perspectives</h1>
+            <p class="text-[13px] text-slate-500 font-medium mt-1">Créateur de contenus & Futur développeur d'app</p>
         </header>
 
-        <!-- Liste de liens -->
+        <!-- Grille de Liens -->
         <div class="space-y-4">
-
-            <!-- PRIORITÉ : Questionnaire Application -->
-            <a href="URL_TON_QUESTIONNAIRE" target="_blank" class="priority-btn flex items-center p-4 bg-indigo-600 text-white rounded-2xl shadow-xl link-card group">
-                <div class="bg-indigo-500 p-3 rounded-xl mr-4 group-hover:scale-110 transition-transform">
+            
+            <!-- ACTION PRINCIPALE : Questionnaire Tally -->
+            <a href="https://tally.so/r/RGKbWd" target="_blank" class="priority-btn flex items-center p-5 text-white rounded-2xl shadow-lg group relative overflow-hidden">
+                <div class="bg-white/20 p-3 rounded-xl mr-4 group-hover:scale-110 transition-transform">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
                 <div class="flex-1">
                     <h3 class="font-bold text-sm">Aidez-moi à créer mon app !</h3>
-                    <p class="text-xs text-indigo-100 opacity-90">Participez au questionnaire utilisateur</p>
+                    <p class="text-[11px] opacity-90">Répondez au questionnaire utilisateur</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </a>
 
-            <!-- Media Kit (Beacons) -->
-            <a href="Lien_Vers_Ton_Beacons" target="_blank" class="flex items-center p-4 glass-card rounded-2xl shadow-sm link-card hover:bg-white group">
-                <div class="bg-slate-100 p-3 rounded-xl mr-4 text-slate-600 group-hover:text-indigo-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6" />
-                    </svg>
-                </div>
-                <div class="flex-1">
-                    <h3 class="font-semibold text-sm">Mon Media Kit</h3>
-                    <p class="text-xs text-slate-400">Collaborations & Statistiques</p>
-                </div>
-            </a>
-
-            <!-- Amazon List -->
-            <a href="URL_LISTE_AMAZON" target="_blank" class="flex items-center p-4 glass-card rounded-2xl shadow-sm link-card hover:bg-white group">
-                <div class="bg-orange-50 p-3 rounded-xl mr-4 text-orange-500 group-hover:bg-orange-100 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </div>
-                <div class="flex-1">
-                    <h3 class="font-semibold text-sm">Ma liste d'achats Amazon</h3>
-                    <p class="text-xs text-slate-400">Le matériel que j'utilise au quotidien</p>
-                </div>
-            </a>
-
-            <!-- Promo Codes -->
-            <div class="p-5 glass-card rounded-2xl shadow-sm">
-                <div class="flex items-center mb-4">
-                    <div class="bg-green-50 p-2 rounded-lg text-green-600 mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                        </svg>
+            <!-- Media Kit & Amazon (Bento Row) -->
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Media Kit -->
+                <a href="https://beacons.ai/flo_perspectives/mediakit" target="_blank" class="bento-card p-5 rounded-2xl bg-white flex flex-col justify-between aspect-square">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: var(--light-green); color: var(--dark-green);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6" /></svg>
                     </div>
-                    <h3 class="font-bold text-sm">Codes Promo</h3>
+                    <div>
+                        <h3 class="font-heading font-700 text-xs text-[var(--dark-gray)]">MEDIA KIT</h3>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Stats & Collabs</p>
+                    </div>
+                </a>
+
+                <!-- Amazon -->
+                <a href="URL_AMAZON" target="_blank" class="bento-card p-5 rounded-2xl bg-white flex flex-col justify-between aspect-square">
+                    <div class="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-orange-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-700 text-xs text-[var(--dark-gray)] uppercase">Wishlist</h3>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Mon matériel</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Codes Promo -->
+            <div class="p-6 rounded-2xl bg-white bento-card">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3" style="background-color: var(--light-green); color: var(--dark-green);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+                    </div>
+                    <h3 class="font-heading font-700 text-xs uppercase tracking-wider">Codes Partenaires</h3>
                 </div>
                 <div class="space-y-3">
-                    <!-- Code 1 -->
-                    <div class="flex items-center justify-between bg-white/50 p-3 rounded-xl border border-dashed border-slate-300">
+                    <div class="flex items-center justify-between p-3 bg-[var(--bg-cream)] rounded-xl border border-slate-100">
                         <div>
-                            <p class="text-[10px] uppercase font-bold text-slate-400">Marque X (-20%)</p>
-                            <p class="text-sm font-mono font-bold text-slate-700">FLO20</p>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Marque Exemple • -10%</p>
+                            <p class="font-mono font-bold text-sm text-[var(--dark-gray)]">FLO10</p>
                         </div>
-                        <button onclick="copyCode('FLO20', this)" class="bg-slate-800 text-white text-[10px] px-3 py-1.5 rounded-lg active:scale-90 transition-all">
+                        <button onclick="copyCode('FLO10', this)" class="bg-[var(--dark-gray)] text-white text-[10px] font-bold px-4 py-2 rounded-lg active:scale-95 transition-all">
                             COPIER
                         </button>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-        <!-- Footer / Contact -->
-        <footer class="mt-12 text-center">
-            <p class="text-xs text-slate-400 mb-6 font-medium">REJOIGNEZ L'AVENTURE</p>
-            <div class="flex justify-center space-x-6">
-                <a href="mailto:hello@flo-perspectives.com" class="text-slate-400 hover:text-indigo-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+            <!-- Réseaux Sociaux -->
+            <div class="grid grid-cols-3 gap-3">
+                <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" class="bento-card py-4 rounded-2xl bg-white flex flex-col items-center justify-center">
+                    <svg class="h-5 w-5 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg>
+                    <span class="text-[9px] font-bold">TIKTOK</span>
                 </a>
-                <a href="https://instagram.com/flo_perspectives" class="text-slate-400 hover:text-pink-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
+                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" target="_blank" class="bento-card py-4 rounded-2xl bg-white flex flex-col items-center justify-center">
+                    <svg class="h-5 w-5 mb-1 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span class="text-[9px] font-bold">YOUTUBE</span>
+                </a>
+                <a href="https://www.linkedin.com/in/florian-ferry" target="_blank" class="bento-card py-4 rounded-2xl bg-white flex flex-col items-center justify-center">
+                    <svg class="h-5 w-5 mb-1 text-blue-700" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <span class="text-[9px] font-bold">LINKEDIN</span>
                 </a>
             </div>
-            <p class="text-[10px] text-slate-300 mt-10">© 2026 flo-perspectives.com</p>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 flex flex-col items-center border-t border-slate-200 pt-8">
+            <a href="mailto:flo.perspectives@gmail.com" class="text-xs font-semibold text-[var(--brand-blue)] mb-6 flex items-center bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm">
+                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                ME CONTACTER
+            </a>
+            <p class="text-[9px] font-heading font-700 text-slate-300 tracking-[0.3em]">© 2026 FLO-PERSPECTIVES.COM</p>
         </footer>
+
     </div>
 
-    <!-- Script pour copier les codes -->
     <script>
         function copyCode(text, btn) {
             const el = document.createElement('textarea');
@@ -154,11 +179,11 @@
             
             const originalText = btn.innerText;
             btn.innerText = 'COPIÉ !';
-            btn.classList.replace('bg-slate-800', 'bg-green-600');
+            btn.classList.add('copy-success');
             
             setTimeout(() => {
                 btn.innerText = originalText;
-                btn.classList.replace('bg-green-600', 'bg-slate-800');
+                btn.classList.remove('copy-success');
             }, 2000);
         }
     </script>
