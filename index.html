@@ -35,7 +35,7 @@
         .h3-button { font-family: var(--font-title); font-weight: 700; }
         .sub-text { font-family: var(--font-sub); }
 
-        /* Titres de sections */
+        /* Titres de sections architecturaux */
         .section-header {
             font-family: var(--font-title);
             font-size: 13px;
@@ -156,9 +156,44 @@
             height: 14px;
             flex-shrink: 0;
         }
+
+        /* TOAST NOTIFICATION */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: rgba(160, 232, 223, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--brand-light-green);
+            color: #fff;
+            text-align: center;
+            border-radius: 1rem;
+            padding: 1rem;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            top: 50px;
+        }
     </style>
 </head>
 <body class="min-h-screen pb-16 antialiased">
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="sub-text font-medium text-sm">
+        <span class="text-[var(--brand-light-green)] mr-2">✓</span> Inscription réussie ! Bienvenue.
+    </div>
+
+    <!-- Iframe invisible pour intercepter la soumission Brevo -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
     <div class="max-w-md mx-auto px-6">
         
@@ -199,7 +234,7 @@
                         </svg>
                     </div>
                     <div class="flex-1 text-left z-10">
-                        <h3 class="h3-button text-sm tracking-tight uppercase">Bâtissons ensemble l'outil de rénovation idéal</h3>
+                        <h3 class="h3-button text-sm tracking-tight uppercase">Bâtissons ensemble l'application idéale</h3>
                         <p class="text-[12px] sub-text opacity-90 font-medium">Répondre au questionnaire (2 min)</p>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
@@ -316,11 +351,14 @@
                             <p class="text-[14px] sub-text text-slate-300 leading-relaxed mb-4">
                                 Repas dès <span class="text-white font-bold">2,99€</span> et votre dessert <span class="text-[var(--brand-light-green)] font-bold">offert à vie</span> sur chaque box.
                             </p>
-                            <div class="flex flex-col space-y-2">
-                                <button onclick="copyCode('HFF4L658', this, 'https://www.filify.co/SHFZP')" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl active:scale-95 transition-all flex items-center justify-center">
-                                    <span>COPIER LE CODE & EN PROFITER</span>
+                            
+                            <div class="flex flex-col space-y-3">
+                                <a href="https://www.filify.co/SHFZP" target="_blank" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl active:scale-95 transition-all flex items-center justify-center">
+                                    <span>PROFITER DE L'OFFRE</span>
+                                </a>
+                                <button onclick="copyCode('HFF4L658', this)" class="w-full border border-white/20 text-white text-[10px] h3-button py-3 rounded-2xl active:scale-95 transition-all flex items-center justify-center">
+                                    <span>COPIER LE CODE : HFF4L658</span>
                                 </button>
-                                <p class="text-[10px] text-center text-slate-600 font-mono tracking-wider">CODE: HFF4L658</p>
                             </div>
                         </div>
                     </div>
@@ -330,10 +368,16 @@
             <!-- SECTION 5 : NEWSLETTER -->
             <section>
                 <h2 class="section-header">Newsletter</h2>
-                <form action="https://ad98909a.sibforms.com/serve/MUIFAJnfjswAvJ0cF9Y_natukPYZfapQ_mBqhwocWrQHDHnEFYf7bq6tL8t5bYsvCjgKLKSLTzvwroI4C8muRL_s32iaMHxjfnXXReD_OjwKa2WbKUNrCa-2w0mWXB6EBqBjnG7gUBPL-_Ns3beF9j3227EWDHoHCME4Zf8s-Bt0A3oW0jZAkjqgZvLYa67YUvL-7xWNhaamUPzBmg==" method="POST" class="p-6 glass-card rounded-[2rem] border-dashed border-[var(--brand-blue)]/30 text-left">
+                <form 
+                    action="https://ad98909a.sibforms.com/serve/MUIFAJnfjswAvJ0cF9Y_natukPYZfapQ_mBqhwocWrQHDHnEFYf7bq6tL8t5bYsvCjgKLKSLTzvwroI4C8muRL_s32iaMHxjfnXXReD_OjwKa2WbKUNrCa-2w0mWXB6EBqBjnG7gUBPL-_Ns3beF9j3227EWDHoHCME4Zf8s-Bt0A3oW0jZAkjqgZvLYa67YUvL-7xWNhaamUPzBmg==" 
+                    method="POST" 
+                    target="hidden_iframe"
+                    onsubmit="handleNewsletterSubmit(this)"
+                    class="p-6 glass-card rounded-[2rem] border-dashed border-[var(--brand-blue)]/30 text-left">
+                    
                     <h3 class="h3-button text-sm text-[var(--brand-light-green)] uppercase tracking-widest mb-2">Les Perspectives de Flo</h3>
                     <p class="text-sm sub-text text-slate-300 mb-5 leading-relaxed">
-                        Rejoins +300 personnes pour suivre les coulisses de ma rénovation et l'avancement de mon outil !
+                        Rejoins +300 personnes pour suivre les coulisses de ma rénovation et l'avancement de l'outil.
                     </p>
                     <div class="flex space-x-2">
                         <input type="email" name="EMAIL" required placeholder="Ton email..." class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[var(--brand-blue)] transition-colors text-white">
@@ -393,19 +437,43 @@
             document.execCommand('copy');
             document.body.removeChild(el);
             
-            const originalText = btn.innerHTML;
-            btn.innerText = 'CODE COPIÉ !';
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span>CODE COPIÉ !</span>';
             btn.style.backgroundColor = 'var(--brand-light-green)';
             btn.style.color = '#0F172A';
             
             setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.backgroundColor = 'white';
-                btn.style.color = '#0F172A';
+                btn.innerHTML = originalHTML;
+                btn.style.backgroundColor = '';
+                btn.style.color = '';
                 if(redirectUrl) {
                     window.open(redirectUrl, '_blank');
                 }
             }, 1000);
+        }
+
+        // Nouvelle fonction pour gérer la newsletter sans redirection
+        function handleNewsletterSubmit(form) {
+            const toast = document.getElementById('toast');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // Effet visuel immédiat sur le bouton
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = "...";
+            submitBtn.disabled = true;
+
+            // Afficher le toast après un léger délai (simulation d'envoi)
+            setTimeout(() => {
+                toast.classList.add('show');
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                form.reset();
+
+                // Cacher le toast après 5 secondes
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000);
+            }, 800);
         }
     </script>
 </body>
