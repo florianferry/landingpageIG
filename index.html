@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M27JZQJN');</script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLO PERSPECTIVES | Liens Officiels</title>
     
-    <!-- Optimisation des connexions externes -->
+    <script>
+      // Système de tracking via DataLayer (Standard GTM)
+      // Permet de capturer l'info sur GTM sans dépendre d'un ID GA4 en dur
+      function trackClick(elementName) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'button_interaction',
+          'element_name': elementName
+        });
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-    <link rel="dns-prefetch" href="https://www.instagram.com">
-
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Polices optimisées -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Hind+Vadodara:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
@@ -24,7 +38,6 @@
             --bg-color: #0F172A; 
             --card-bg: rgba(30, 41, 59, 0.4);
             --border-color: rgba(255, 255, 255, 0.05);
-
             --font-title: 'Montserrat', sans-serif;
             --font-sub: 'Hind Vadodara', sans-serif;
             --font-text: 'Roboto', sans-serif;
@@ -67,7 +80,7 @@
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px); /* Compatibilité iOS */
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
         }
 
@@ -77,15 +90,7 @@
         }
 
         @media (hover: hover) {
-            .interactive-link:hover {
-                transform: translateY(-4px);
-                border-color: rgba(0, 168, 186, 0.3);
-                background: rgba(30, 41, 59, 0.6);
-            }
-        }
-
-        .interactive-link:active {
-            transform: scale(0.97);
+            .interactive-link:hover { transform: translateY(-4px); border-color: rgba(0, 168, 186, 0.3); background: rgba(30, 41, 59, 0.6); }
         }
 
         .cta-priority {
@@ -102,35 +107,18 @@
             left: -60%;
             width: 20%;
             height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.2) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
             transform: rotate(25deg);
             animation: shimmer 4s infinite;
         }
 
-        @keyframes shimmer {
-            0% { left: -60%; }
-            30% { left: 140%; }
-            100% { left: 140%; }
-        }
+        @keyframes shimmer { 0% { left: -60%; } 30% { left: 140%; } 100% { left: 140%; } }
+        @keyframes bounce-x-soft { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+        
+        .animate-arrow-bounce { animation: bounce-x-soft 1.5s ease-in-out infinite; }
 
-        .reel-thumbnail-small {
-            position: relative;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-
-        .reel-thumbnail-vertical {
-            position: relative;
-            aspect-ratio: 9/16;
-            overflow: hidden;
-            border-radius: 1.25rem;
-        }
+        .reel-thumbnail-small { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 1rem; background: #000; }
+        .reel-thumbnail-vertical { position: relative; aspect-ratio: 9/16; overflow: hidden; border-radius: 1.25rem; background: #000; }
 
         .insta-overlay {
             position: absolute;
@@ -140,7 +128,6 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 0.85rem;
-            z-index: 10;
         }
 
         .play-btn-overlay {
@@ -153,36 +140,10 @@
             border-radius: 50%;
             padding: 0.85rem;
             border: 1px solid rgba(255, 255, 255, 0.25);
-            pointer-events: none;
-            z-index: 20;
         }
 
-        .stat-icon {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
+        .stat-icon { width: 14px; height: 14px; flex-shrink: 0; }
 
-        /* ANIMATIONS SPÉCIFIQUES POUR LE TÉLÉCHARGEMENT */
-        @keyframes float-soft {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        @keyframes bounce-x-soft {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(4px); }
-        }
-
-        .animate-float-soft {
-            animation: float-soft 3s ease-in-out infinite;
-        }
-
-        .animate-arrow-bounce {
-            animation: bounce-x-soft 1.5s ease-in-out infinite;
-        }
-
-        /* NOTIFICATION TOAST */
         #toast {
             visibility: hidden;
             min-width: 250px;
@@ -198,21 +159,19 @@
             left: 50%;
             top: 30px;
             transform: translateX(-50%);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: all 0.5s ease;
             opacity: 0;
         }
 
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-            top: 50px;
-        }
+        #toast.show { visibility: visible; opacity: 1; top: 50px; }
     </style>
 </head>
 <body class="min-h-screen pb-16 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M27JZQJN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Toast Notification Container -->
     <div id="toast" class="sub-text font-medium text-sm">
         <span class="text-[var(--brand-light-green)] mr-2">✓</span> Inscription réussie ! Bienvenue.
     </div>
@@ -221,7 +180,6 @@
 
     <div class="max-w-md mx-auto px-6">
         
-        <!-- En-tête -->
         <header class="pt-20 pb-12 flex flex-col items-center text-center">
             <div class="mb-8">
                 <div class="w-24 h-24 rounded-full overflow-hidden shadow-2xl">
@@ -231,9 +189,7 @@
                          onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Flo'">
                 </div>
             </div>
-            
             <h1 class="text-2xl h1-title tracking-tight text-[var(--brand-light-green)]">FLO PERSPECTIVES</h1>
-            
             <div class="mt-8 space-y-6 px-2">
                 <p class="text-xl sub-text font-medium text-white leading-relaxed max-w-[300px] mx-auto">
                     Consultant digital devenu artisan passionné.
@@ -250,236 +206,135 @@
 
         <div class="space-y-14">
             
-            <!-- SECTION 1 : PROJET APP -->
             <section>
                 <h2 class="section-header">Mon Projet à venir</h2>
-                <a href="https://tally.so/r/RGKbWd" target="_blank" class="cta-priority flex items-center p-6 text-white rounded-3xl group interactive-link">
+                <a href="https://tally.so/r/RGKbWd" onclick="trackClick('Questionnaire_App')" target="_blank" class="cta-priority flex items-center p-6 text-white rounded-3xl group interactive-link">
                     <div class="bg-white/10 p-3 rounded-2xl mr-4 z-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                     </div>
                     <div class="flex-1 text-left z-10">
                         <h3 class="h3-button text-sm tracking-tight uppercase">Bâtissons ensemble l'outil de rénovation idéal</h3>
                         <p class="text-[12px] sub-text opacity-90 font-medium">Répondre au questionnaire (2 min)</p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
             </section>
 
-            <!-- SECTION 2 : ATELIER & PLANS -->
             <section>
                 <h2 class="section-header">Atelier & Fabrication</h2>
                 <div class="glass-card rounded-[2rem] p-4 flex items-center space-x-5 border border-[var(--brand-light-green)]/10 shadow-lg">
-                    <!-- Miniature Reel avec overlay Play -->
-                    <a href="https://www.instagram.com/reel/DIg27phxj3G/?igsh=YmJ5d2p2NTdzbjh0" target="_blank" class="reel-thumbnail-small w-24 flex-shrink-0 interactive-link group">
+                    <a href="https://www.instagram.com/reel/DIg27phxj3G/?igsh=YmJ5d2p2NTdzbjh0" onclick="trackClick('Reel_Rack')" target="_blank" class="reel-thumbnail-small w-24 flex-shrink-0 interactive-link group">
                         <img src="miniature rack.webp" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=200'">
-                        <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/20">
-                            <svg class="w-8 h-8 text-white fill-current opacity-90" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/20"><svg class="w-8 h-8 text-white fill-current opacity-90" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                     </a>
-
                     <div class="flex-1 py-1 text-left">
                         <div class="flex items-center space-x-2 mb-1.5">
                             <h3 class="h3-button text-xs text-white uppercase tracking-tight">Rack Serre-joints</h3>
                             <span class="bg-[var(--brand-light-green)]/20 text-[var(--brand-light-green)] text-[8px] font-bold px-1.5 py-0.5 rounded-md uppercase">Guide PDF</span>
                         </div>
-                        <p class="text-[13px] sub-text text-slate-400 leading-snug mb-4">
-                            Télécharge mon plan complet pour fabriquer ton propre rack modulaire.
-                        </p>
-                        <!-- Lien vers le PDF avec animation subtile -->
-                        <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view?usp=sharing" target="_blank" class="inline-flex items-center text-[10px] h3-button text-[var(--brand-light-green)] uppercase tracking-widest font-bold group/dl">
-                            <span class="mr-2">Télécharger le plan</span> 
-                            <svg class="w-3.5 h-3.5 animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
+                        <p class="text-[13px] sub-text text-slate-400 leading-snug mb-4">Plan complet pour fabriquer ton rack modulaire.</p>
+                        <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view?usp=sharing" onclick="trackClick('Download_PDF_Rack')" target="_blank" class="inline-flex items-center text-[10px] h3-button text-[var(--brand-light-green)] uppercase tracking-widest font-bold">
+                            Télécharger le plan <svg class="w-3 h-3 ml-2 animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </a>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 3 : JOURNAL DE BORD -->
             <section>
                 <h2 class="section-header">Journal de Chantier</h2>
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="https://www.instagram.com/reel/C_BL-v_oTNv/?igsh=cm9pOTF4NHVybWY4" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group">
+                    <a href="https://www.instagram.com/reel/C_BL-v_oTNv/?igsh=cm9pOTF4NHVybWY4" onclick="trackClick('Reel_Ossature')" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group">
                         <img src="ossature optima.webp" loading="lazy" decoding="async" alt="Ossature Optima" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
-                        <div class="play-btn-overlay">
-                            <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
+                        <div class="play-btn-overlay"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                         <div class="insta-overlay">
-                            <div class="flex justify-end">
-                                <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                            </div>
+                            <div class="flex justify-end"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
                             <div class="space-y-1.5 text-white">
-                                <div class="flex items-center space-x-2">
-                                    <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                    <span class="text-[11px] font-bold tracking-wide">3,6 M</span>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                                    <span class="text-[11px] font-bold tracking-wide">7,9 K</span>
-                                </div>
+                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="text-[11px] font-bold">3,6 M</span></div>
+                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="text-[11px] font-bold">7,9 K</span></div>
                             </div>
                         </div>
                     </a>
-                    <a href="https://www.instagram.com/reel/DQ_rNNnjONw/?igsh=MTJvY2MzMTY5cDNmcA==" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group">
+                    <a href="https://www.instagram.com/reel/DQ_rNNnjONw/?igsh=MTJvY2MzMTY5cDNmcA==" onclick="trackClick('Reel_Douche')" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group">
                         <img src="douche lego.webp" loading="lazy" decoding="async" alt="Douche Lego" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
-                        <div class="play-btn-overlay">
-                            <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
+                        <div class="play-btn-overlay"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                         <div class="insta-overlay">
-                            <div class="flex justify-end">
-                                <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                            </div>
+                            <div class="flex justify-end"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
                             <div class="space-y-1.5 text-white">
-                                <div class="flex items-center space-x-2">
-                                    <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                    <span class="text-[11px] font-bold tracking-wide">648 K</span>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                                    <span class="text-[11px] font-bold tracking-wide">5,2 K</span>
-                                </div>
+                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="text-[11px] font-bold">648 K</span></div>
+                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="text-[11px] font-bold">5,2 K</span></div>
                             </div>
                         </div>
                     </a>
                 </div>
             </section>
 
-            <!-- SECTION 4 : RESSOURCES -->
             <section>
                 <h2 class="section-header">Ressources & Outils</h2>
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="https://www.amazon.fr/shop/flo_perspectives?ref_=cm_sw_r_cp_ud_aipsfshop_NBXCJTS7H6DVW9G19T71" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px]">
-                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-orange-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                        </div>
-                        <div class="text-left">
-                            <h3 class="h3-button text-sm text-white tracking-wider uppercase">Mes essentiels</h3>
-                            <p class="text-[13px] sub-text text-slate-400 mt-1 uppercase tracking-tight leading-tight">outillage sélectionné</p>
-                        </div>
+                    <a href="https://www.amazon.fr/shop/flo_perspectives" onclick="trackClick('Amazon_Shop')" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px]">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-orange-400"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+                        <div class="text-left"><h3 class="h3-button text-sm text-white uppercase">Mes essentiels</h3><p class="text-[13px] sub-text text-slate-400 mt-1 leading-tight">outillage sélectionné</p></div>
                     </a>
-
-                    <a href="https://beacons.ai/flo_perspectives/mediakit" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px]">
-                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-[var(--brand-blue)]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" /></svg>
-                        </div>
-                        <div class="text-left">
-                            <h3 class="h3-button text-sm text-white tracking-wider uppercase">Media Kit</h3>
-                            <p class="text-[13px] sub-text text-slate-400 mt-1 uppercase tracking-tight leading-tight">Partenariats</p>
-                        </div>
+                    <a href="https://beacons.ai/flo_perspectives/mediakit" onclick="trackClick('Media_Kit')" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px]">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-[var(--brand-blue)]"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z"/></svg></div>
+                        <div class="text-left"><h3 class="h3-button text-sm text-white uppercase">Media Kit</h3><p class="text-[13px] sub-text text-slate-400 mt-1 leading-tight">Partenariats</p></div>
                     </a>
                 </div>
             </section>
 
-            <!-- SECTION 5 : BONS PLANS -->
             <section>
                 <h2 class="section-header">Bons Plans & Partenariats</h2>
                 <div class="space-y-4">
-                    <a href="https://find.ly/2nw" target="_blank" class="glass-card interactive-link flex items-center p-5 rounded-3xl group">
-                        <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mr-4 text-[var(--brand-light-green)]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <div class="flex-1 text-left">
-                            <h3 class="h3-button text-sm text-white uppercase tracking-wider">Laser Huepar</h3>
-                            <p class="text-[13px] sub-text text-slate-400 mt-0.5">L'outil indispensable pour mes chantiers</p>
-                        </div>
+                    <a href="https://find.ly/2nw" onclick="trackClick('Laser_Huepar')" target="_blank" class="glass-card interactive-link flex items-center p-5 rounded-3xl group">
+                        <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mr-4 text-[var(--brand-light-green)]"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                        <div class="flex-1 text-left"><h3 class="h3-button text-sm text-white uppercase tracking-wider">Laser Huepar</h3><p class="text-[13px] sub-text text-slate-400 mt-0.5">L'outil indispensable pour mes chantiers</p></div>
                         <span class="text-[10px] h3-button text-[var(--brand-blue)] font-bold">VOIR</span>
                     </a>
-
                     <div class="glass-card rounded-[2rem] overflow-hidden border border-green-500/20">
                         <div class="p-6">
                             <div class="flex items-start justify-between mb-4">
-                                <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                </div>
-                                <span class="bg-green-500/20 text-green-400 text-[9px] h3-button px-3 py-1 rounded-full tracking-widest uppercase">Offre Limitée</span>
+                                <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
+                                <span class="bg-green-500/20 text-green-400 text-[9px] h3-button px-3 py-1 rounded-full uppercase">Offre Limitée</span>
                             </div>
-                            <h3 class="h3-button text-base text-white mb-2 uppercase tracking-tight text-left">HelloFresh : Dessert à vie</h3>
-                            <p class="text-[14px] sub-text text-slate-300 leading-relaxed mb-4 text-left">
-                                Repas dès <span class="text-white font-bold">2,99€</span> et votre dessert <span class="text-[var(--brand-light-green)] font-bold">offert à vie</span> sur chaque box.
-                            </p>
-                            
+                            <h3 class="h3-button text-base text-white mb-2 uppercase text-left">HelloFresh : Dessert à vie</h3>
+                            <p class="text-[14px] sub-text text-slate-300 leading-relaxed mb-4 text-left">Repas dès 2,99€ et votre dessert offert à vie sur chaque box.</p>
                             <div class="flex flex-col space-y-3">
-                                <a href="https://www.filify.co/SHFZP" target="_blank" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl active:scale-95 transition-all flex items-center justify-center">
-                                    <span>PROFITER DE L'OFFRE</span>
-                                </a>
-                                <button onclick="copyCode('HFF4L658', this)" class="w-full border border-white/20 text-white text-[10px] h3-button py-3 rounded-2xl active:scale-95 transition-all flex items-center justify-center">
-                                    <span>COPIER LE CODE : HFF4L658</span>
-                                </button>
+                                <a href="https://www.filify.co/SHFZP" onclick="trackClick('HelloFresh_Lien')" target="_blank" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl flex items-center justify-center">PROFITER DE L'OFFRE</a>
+                                <button onclick="copyCode('HFF4L658', this); trackClick('HelloFresh_Code');" class="w-full border border-white/20 text-white text-[10px] h3-button py-3 rounded-2xl flex items-center justify-center">COPIER LE CODE : HFF4L658</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 6 : NEWSLETTER -->
             <section>
                 <h2 class="section-header">Newsletter</h2>
-                <form 
-                    action="https://ad98909a.sibforms.com/serve/MUIFAJnfjswAvJ0cF9Y_natukPYZfapQ_mBqhwocWrQHDHnEFYf7bq6tL8t5bYsvCjgKLKSLTzvwroI4C8muRL_s32iaMHxjfnXXReD_OjwKa2WbKUNrCa-2w0mWXB6EBqBjnG7gUBPL-_Ns3beF9j3227EWDHoHCME4Zf8s-Bt0A3oW0jZAkjqgZvLYa67YUvL-7xWNhaamUPzBmg==" 
-                    method="POST" 
-                    target="hidden_iframe"
-                    onsubmit="handleNewsletterSubmit(this)"
+                <form action="https://ad98909a.sibforms.com/serve/MUIFAJnfjswAvJ0cF9Y_natukPYZfapQ_mBqhwocWrQHDHnEFYf7bq6tL8t5bYsvCjgKLKSLTzvwroI4C8muRL_s32iaMHxjfnXXReD_OjwKa2WbKUNrCa-2w0mWXB6EBqBjnG7gUBPL-_Ns3beF9j3227EWDHoHCME4Zf8s-Bt0A3oW0jZAkjqgZvLYa67YUvL-7xWNhaamUPzBmg==" 
+                    method="POST" target="hidden_iframe" onsubmit="handleNewsletterSubmit(this)"
                     class="p-6 glass-card rounded-[2rem] border-dashed border-[var(--brand-blue)]/30 text-left">
-                    
-                    <h3 class="h3-button text-sm text-[var(--brand-light-green)] uppercase tracking-widest mb-2">Les Perspectives de Flo</h3>
-                    <p class="text-[13px] sub-text text-slate-300 mb-5 leading-relaxed">
-                        Rejoins +300 personnes pour suivre les coulisses de ma rénovation et l'avancement de l'outil.
-                    </p>
+                    <h3 class="h3-button text-sm text-[var(--brand-light-green)] uppercase mb-2">Les Perspectives de Flo</h3>
+                    <p class="text-[13px] sub-text text-slate-300 mb-5 leading-relaxed">Rejoins +300 personnes pour suivre les coulisses de ma rénovation et l'avancement de l'outil.</p>
                     <div class="flex space-x-2">
-                        <input type="email" name="EMAIL" required placeholder="Ton email..." class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[var(--brand-blue)] transition-colors text-white">
-                        <button type="submit" class="bg-[var(--brand-blue)] text-white px-5 py-3 rounded-xl text-[10px] h3-button uppercase active:scale-95 transition-transform">S'abonner</button>
+                        <input type="email" name="EMAIL" required placeholder="Ton email..." class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none">
+                        <button type="submit" class="bg-[var(--brand-blue)] text-white px-5 py-3 rounded-xl text-[10px] h3-button uppercase">S'abonner</button>
                     </div>
                 </form>
             </section>
 
-            <!-- Socials -->
             <div class="grid grid-cols-4 gap-4 px-2 py-8">
-                <a href="https://instagram.com/flo_perspectives" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-white">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#fdf497" />
-                                <stop offset="45%" style="stop-color:#fd5949" />
-                                <stop offset="60%" style="stop-color:#d6249f" />
-                                <stop offset="90%" style="stop-color:#285AEB" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#insta-gradient)"/>
-                    </svg>
+                <a href="https://instagram.com/flo_perspectives" onclick="trackClick('Social_Insta')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-white">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#fdf497"/><stop offset="45%" style="stop-color:#fd5949"/><stop offset="60%" style="stop-color:#d6249f"/><stop offset="90%" style="stop-color:#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#insta-gradient)"/></svg>
                 </a>
-                <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-white">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg>
-                </a>
-                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-red-500">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/florian-ferry" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-blue-400">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
+                <a href="https://www.tiktok.com/@flo_perspectives" onclick="trackClick('Social_TikTok')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg></a>
+                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" onclick="trackClick('Social_YouTube')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-red-500"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="https://www.linkedin.com/in/florian-ferry" onclick="trackClick('Social_LinkedIn')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-blue-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
             </div>
-
         </div>
 
-        <!-- Pied de page -->
         <footer class="mt-8 flex flex-col items-center pt-10 border-t border-white/5 text-center">
             <h4 class="text-xs sub-text font-bold text-slate-500 uppercase tracking-widest mb-6">Une idée ? Écris-moi.</h4>
-            <a href="mailto:flo.perspectives@gmail.com" class="inline-flex items-center bg-white hover:bg-slate-100 px-12 py-4 rounded-full text-[#0F172A] text-sm h3-button tracking-tight transition-all active:scale-90 shadow-lg">
-                On en discute ?
-            </a>
-            <p class="mt-12 text-[8px] h1-title text-white/5 tracking-[0.4em]">
-                © 2026 FLO PERSPECTIVES
-            </p>
+            <a href="mailto:flo.perspectives@gmail.com" onclick="trackClick('Footer_Email')" class="inline-flex items-center bg-white hover:bg-slate-100 px-12 py-4 rounded-full text-[#0F172A] text-sm h3-button active:scale-90 shadow-lg">On en discute ?</a>
+            <p class="mt-12 text-[8px] h1-title text-white/5 tracking-[0.4em]">© 2026 FLO PERSPECTIVES</p>
         </footer>
 
     </div>
@@ -487,41 +342,23 @@
     <script>
         function copyCode(text, btn) {
             const el = document.createElement('textarea');
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            
+            el.value = text; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '<span>CODE COPIÉ !</span>';
-            btn.style.backgroundColor = 'var(--brand-light-green)';
-            btn.style.color = '#0F172A';
-            
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.backgroundColor = '';
-                btn.style.color = '';
-            }, 1000);
+            btn.style.backgroundColor = 'var(--brand-light-green)'; btn.style.color = '#0F172A';
+            setTimeout(() => { btn.innerHTML = originalHTML; btn.style.backgroundColor = ''; btn.style.color = ''; }, 1000);
         }
 
         function handleNewsletterSubmit(form) {
             const toast = document.getElementById('toast');
             const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = "...";
-            submitBtn.disabled = true;
-
+            trackClick('Newsletter_Submit');
+            submitBtn.innerHTML = "..."; submitBtn.disabled = true;
             setTimeout(() => {
                 toast.classList.add('show');
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
+                submitBtn.innerHTML = "S'abonner"; submitBtn.disabled = false;
                 form.reset();
-
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 5000);
+                setTimeout(() => { toast.classList.remove('show'); }, 5000);
             }, 800);
         }
     </script>
