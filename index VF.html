@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M27JZQJN');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FLO PERSPECTIVES</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Hind+Vadodara:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. VARIABLES GLOBALES --- */
+        :root {
+            --brand-light-green: #A0E8DF;
+            --brand-blue: #00A8BA;
+            --bg-color: #0F172A; 
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --border-color: rgba(255, 255, 255, 0.05);
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-sub: 'Hind Vadodara', sans-serif;
+            --font-text: 'Roboto', sans-serif;
+        }
+
+        /* --- 2. RESET & BASE --- */
+        body {
+            font-family: var(--font-text);
+            background-color: var(--bg-color);
+            background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-color) 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+
+        /* --- 3. STYLES HOME --- */
+        #section-home .h1-title { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; }
+        #section-home .h3-button { font-family: var(--font-title); font-weight: 700; }
+        #section-home .sub-text { font-family: var(--font-sub); }
+
+        #section-home .section-header {
+            font-family: var(--font-title);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--brand-light-green);
+            padding: 0 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center;
+        }
+        
+        #section-home .section-header::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(to right, rgba(160, 232, 223, 0.2), transparent);
+            margin-left: 1.25rem;
+        }
+
+        #section-home .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color); border-radius: 2rem;
+        }
+
+        #section-home .interactive-link { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease; }
+        #section-home .interactive-link:hover { transform: translateY(-4px); border-color: rgba(0, 168, 186, 0.3); }
+
+        #section-home .cta-priority {
+            position: relative; overflow: hidden;
+            background-color: var(--brand-blue);
+            box-shadow: 0 10px 25px -5px rgba(0, 168, 186, 0.3);
+            border-radius: 1.5rem;
+        }
+        #section-home .cta-priority::after {
+            content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(25deg); animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer { 0% { left: -60%; } 30% { left: 140%; } 100% { left: 140%; } }
+        @keyframes bounce-x-soft { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+        #section-home .animate-arrow-bounce { animation: bounce-x-soft 1.5s ease-in-out infinite; }
+
+        #section-home .reel-thumbnail-small { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 1rem; background: #000; }
+        #section-home .reel-thumbnail-vertical { position: relative; aspect-ratio: 9/16; overflow: hidden; border-radius: 1.25rem; background: #000; }
+        
+        #section-home .play-btn-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px);
+            border-radius: 50%; padding: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.25); z-index: 10;
+        }
+        #section-home .insta-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+            display: flex; flex-direction: column; justify-content: space-between; padding: 0.85rem; z-index: 5;
+        }
+        #section-home .stat-icon { width: 14px !important; height: 14px !important; flex-shrink: 0; }
+
+        /* --- 4. STYLES ARSENAL --- */
+        #section-arsenal .h1-title { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; }
+        #section-arsenal .h3-button { font-family: var(--font-title); font-weight: 700; }
+        #section-arsenal .sub-text { font-family: var(--font-sub); }
+        
+        #section-arsenal .vignette-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            display: flex; flex-direction: column; height: 100%;
+            position: relative;
+        }
+
+        #section-arsenal .vignette-image {
+            aspect-ratio: 1.2/1;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; padding: 12px;
+        }
+        #section-arsenal .vignette-image img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease; }
+        #section-arsenal .vignette-image:hover img { transform: scale(1.05); }
+
+        #section-arsenal .budget-badge {
+            position: absolute; 
+            top: 12px; right: 12px;
+            font-size: 9px; font-weight: 700;
+            padding: 4px 8px; border-radius: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            z-index: 20;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        #section-arsenal .brand-label {
+            position: absolute; top: 12px; left: 12px;
+            font-size: 7px; font-weight: 900; text-transform: uppercase;
+            padding: 4px 8px; border-radius: 5px;
+            letter-spacing: 0.05em;
+            background: #1e293b; color: white; z-index: 20;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- FILTRES CATÉGORIES (Pills Modernes) --- */
+        #section-arsenal .filter-pill {
+            /* Styles de base dans les classes HTML */
+        }
+        
+        #section-arsenal .active-pill { 
+            background-color: var(--brand-blue) !important;
+            border-color: var(--brand-blue) !important;
+            color: white !important; 
+            box-shadow: 0 4px 12px rgba(0, 168, 186, 0.3);
+        }
+
+        /* --- FILTRES BUDGET (Segmented Control) --- */
+        #section-arsenal .active-seg {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* --- BOUTONS AFFILIATION (Silver Compact) --- */
+        #section-arsenal .btn-affiliate {
+            display: flex; align-items: center; justify-content: center;
+            height: 34px; 
+            min-width: 44px;
+            padding: 0 8px;
+            border-radius: 8px;
+            background: rgba(226, 232, 240, 0.9);
+            border: 1px solid rgba(203, 213, 225, 0.8);
+            transition: all 0.2s ease; text-decoration: none; cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        #section-arsenal .btn-affiliate:hover { background: #f1f5f9; transform: translateY(-1px); }
+        #section-arsenal .btn-affiliate:active { transform: scale(0.96); }
+        
+        /* Correction Critique : On enlève les contraintes globales pour laisser les classes utilitaires (h-4, h-7) agir */
+        #section-arsenal .btn-affiliate img, 
+        #section-arsenal .btn-affiliate svg { 
+            /* width: auto; et height: auto; sont gérés par les classes tailwind h-x */
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .loading-spinner {
+            border: 2px solid rgba(255, 255, 255, 0.1); border-top: 2px solid var(--brand-blue);
+            border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        #toast {
+            visibility: hidden; min-width: 280px; background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(52, 211, 153, 0.4); color: #fff;
+            text-align: center; border-radius: 16px; padding: 16px 24px; position: fixed; z-index: 100;
+            left: 50%; top: 20px; transform: translateX(-50%) translateY(-20px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); opacity: 0;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            font-family: var(--font-title); font-weight: 600; letter-spacing: 0.5px;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+        }
+        #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); top: 40px; }
+        #toast .check-icon { width: 20px; height: 20px; background: rgba(52, 211, 153, 0.2); color: #34d399; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+    </style>
+
+    <script>
+      function trackClick(elementName) {
+        if(window.dataLayer) {
+            window.dataLayer.push({ 'event': 'button_interaction', 'element_name': elementName });
+        }
+      }
+    </script>
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M27JZQJN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div id="toast">
+        <div class="check-icon">
+            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+        </div>
+        <span>Inscription validée !</span>
+    </div>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- ========================================== -->
+    <!-- SECTION 1 : HOME (COMPLETE)                -->
+    <!-- ========================================== -->
+    <div id="section-home" class="fade-in">
+        <div class="max-w-md mx-auto px-6 pb-20">
+            
+            <!-- HEADER / BIO -->
+            <header class="pt-20 pb-12 flex flex-col items-center text-center">
+                <div class="mb-8">
+                    <div class="w-24 h-24 rounded-full overflow-hidden shadow-2xl">
+                        <img src="Insta profile pic2 2.webp" alt="Flo Perspectives" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <h1 class="text-2xl h1-title tracking-tight text-[var(--brand-light-green)]">FLO PERSPECTIVES</h1>
+                <div class="mt-8 space-y-6 px-2">
+                    <p class="text-xl sub-text font-medium text-white leading-relaxed max-w-[300px] mx-auto">
+                        Consultant digital devenu artisan passionné.
+                    </p>
+                    <div class="flex justify-center items-center space-x-3 text-[10px] sub-text font-bold uppercase tracking-[0.3em] text-slate-500">
+                        <span>Rénovation</span>
+                        <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+                        <span>Outillage</span>
+                        <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+                        <span>Digital</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="space-y-14">
+                
+                <!-- BOUTON ARSENAL (Ordre Inversé = Sécurité) -->
+                <section>
+                    <button id="btn-open-arsenal" onclick="switchView('arsenal'); trackClick('Open_Arsenal');" class="w-full glass-card border-[var(--brand-blue)]/40 flex items-center p-6 text-white rounded-3xl group interactive-link shadow-xl cursor-pointer">
+                        <div class="bg-[var(--brand-blue)]/20 p-3 rounded-2xl mr-4">
+                            <svg class="w-6 h-6 text-[var(--brand-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <h3 class="h3-button text-sm tracking-tight uppercase">L'Arsenal de Nancy</h3>
+                            <p class="text-[12px] sub-text opacity-70">Mon outillage organisé par métier</p>
+                        </div>
+                        <svg class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </section>
+
+                <!-- PROJET APP -->
+                <section>
+                    <h2 class="section-header">Mon Projet à venir</h2>
+                    <a href="https://tally.so/r/RGKbWd" onclick="trackClick('Questionnaire_App')" target="_blank" class="cta-priority flex items-center p-6 text-white rounded-3xl group interactive-link no-underline">
+                        <div class="bg-white/10 p-3 rounded-2xl mr-4 z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                        <div class="flex-1 text-left z-10">
+                            <h3 class="h3-button text-sm tracking-tight uppercase leading-tight">Bâtissons ensemble l'outil de rénovation idéal</h3>
+                            <p class="text-[12px] sub-text opacity-90 font-medium leading-none">Répondre au questionnaire (2 min)</p>
+                        </div>
+                    </a>
+                </section>
+
+                <!-- RACK PDF -->
+                <section>
+                    <h2 class="section-header">Atelier & Fabrication</h2>
+                    <div class="glass-card rounded-[2rem] p-4 flex items-center space-x-5 shadow-lg border border-[var(--brand-light-green)]/10">
+                        <a href="https://www.instagram.com/reel/DIg27phxj3G/" target="_blank" class="reel-thumbnail-small w-24 flex-shrink-0 group relative block">
+                            <img src="miniature rack.webp" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/20"><svg class="w-8 h-8 text-white fill-current opacity-90" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                        </a>
+                        <div class="flex-1 py-1 text-left">
+                            <div class="flex items-center space-x-2 mb-1.5">
+                                <h3 class="h3-button text-xs text-white uppercase tracking-tight">Rack Serre-joints</h3>
+                                <span class="bg-[var(--brand-light-green)]/20 text-[var(--brand-light-green)] text-[8px] font-bold px-1.5 py-0.5 rounded-md uppercase">Guide PDF</span>
+                            </div>
+                            <p class="text-[13px] sub-text text-slate-400 leading-snug mb-4">Plan complet pour fabriquer ton rack modulaire.</p>
+                            <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view?usp=sharing" onclick="trackClick('Download_PDF_Rack')" target="_blank" class="inline-flex items-center text-[10px] h3-button text-[var(--brand-light-green)] uppercase tracking-widest font-bold no-underline">
+                                Télécharger le plan <svg class="w-3 h-3 ml-2 animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- JOURNAL DE CHANTIER -->
+                <section>
+                    <h2 class="section-header">Journal de Chantier</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="https://www.instagram.com/reel/C_BL-v_oTNv/" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group relative block">
+                            <img src="ossature optima.webp" loading="lazy" decoding="async" alt="Ossature Optima" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
+                            <div class="play-btn-overlay"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <div class="insta-overlay">
+                                <div class="flex justify-end"><svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+                                <div class="space-y-1.5 text-white">
+                                    <div class="flex items-center space-x-2">
+                                        <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                        <span class="text-[10px] font-bold">3,6 M</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                        <span class="text-[10px] font-bold">7,9 K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/reel/DQ_rNNnjONw/" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group relative block">
+                            <img src="douche lego.webp" loading="lazy" decoding="async" alt="Douche Lego" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
+                            <div class="play-btn-overlay"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <div class="insta-overlay">
+                                <div class="flex justify-end"><svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+                                <div class="space-y-1.5 text-white">
+                                    <div class="flex items-center space-x-2">
+                                        <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                        <span class="text-[10px] font-bold">648 K</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                        <span class="text-[10px] font-bold">5,2 K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- RESSOURCES & OUTILS -->
+                <section>
+                    <h2 class="section-header">Ressources & Outils</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="https://www.amazon.fr/shop/flo_perspectives" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px] no-underline">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-orange-400"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+                            <div class="text-left"><h3 class="h3-button text-sm text-white uppercase leading-tight">Mes essentiels</h3><p class="text-[13px] sub-text text-slate-400 mt-1 leading-tight">outillage sélectionné</p></div>
+                        </a>
+                        <a href="https://beacons.ai/flo_perspectives/mediakit" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px] no-underline">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-[var(--brand-blue)]"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z"/></svg></div>
+                            <div class="text-left"><h3 class="h3-button text-sm text-white uppercase">Media Kit</h3><p class="text-[13px] sub-text text-slate-400 mt-1 leading-tight">Partenariats</p></div>
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- BONS PLANS -->
+                <section>
+                    <h2 class="section-header">Bons Plans & Partenariats</h2>
+                    <div class="space-y-4">
+                        <a href="https://find.ly/2nw" onclick="trackClick('Laser_Huepar')" target="_blank" class="glass-card interactive-link flex items-center p-5 rounded-3xl group no-underline">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mr-4 text-[var(--brand-light-green)]"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                            <div class="flex-1 text-left"><h3 class="h3-button text-sm text-white uppercase tracking-wider leading-tight">Laser Huepar</h3><p class="text-[13px] sub-text text-slate-400 mt-0.5">L'outil indispensable pour mes chantiers</p></div>
+                            <span class="text-[10px] h3-button text-[var(--brand-blue)] font-bold">VOIR</span>
+                        </a>
+                        <div class="glass-card rounded-[2rem] overflow-hidden border border-green-500/20">
+                            <div class="p-6">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
+                                    <span class="bg-green-500/20 text-green-400 text-[9px] h3-button px-3 py-1 rounded-full uppercase">Offre Limitée</span>
+                                </div>
+                                <h3 class="h3-button text-base text-white mb-2 uppercase text-left">HelloFresh : Dessert à vie</h3>
+                                <p class="text-[14px] sub-text text-slate-300 leading-relaxed mb-4 text-left">Repas dès 2,99€ et votre dessert offert à vie sur chaque box.</p>
+                                <div class="flex flex-col space-y-3">
+                                    <a href="https://www.filify.co/SHFZP" onclick="trackClick('HelloFresh_Lien')" target="_blank" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl active:scale-95 transition-all flex items-center justify-center no-underline">PROFITER DE L'OFFRE</a>
+                                    <button onclick="copyCode('HFF4L658', this); trackClick('HelloFresh_Code');" class="w-full border border-white/20 text-white text-[10px] h3-button py-3 rounded-2xl active:scale-95 transition-all flex items-center justify-center uppercase cursor-pointer">COPIER LE CODE : HFF4L658</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NEWSLETTER -->
+                <section>
+                    <h2 class="section-header">Newsletter</h2>
+                    <form action="https://ad98909a.sibforms.com/serve/MUIFAJnfjswAvJ0cF9Y_natukPYZfapQ_mBqhwocWrQHDHnEFYf7bq6tL8t5bYsvCjgKLKSLTzvwroI4C8muRL_s32iaMHxjfnXXReD_OjwKa2WbKUNrCa-2w0mWXB6EBqBjnG7gUBPL-_Ns3beF9j3227EWDHoHCME4Zf8s-Bt0A3oW0jZAkjqgZvLYa67YUvL-7xWNhaamUPzBmg==" 
+                        method="POST" target="hidden_iframe"
+                        onsubmit="handleNewsletterSubmit(this)" 
+                        class="p-6 glass-card border-dashed border-[var(--brand-blue)]/30 text-left">
+                        <h3 class="h3-button text-sm text-[var(--brand-light-green)] uppercase mb-2 leading-none">Les Perspectives de Flo</h3>
+                        <p class="text-[13px] sub-text text-slate-300 mb-5 leading-relaxed">Suivre les coulisses de la rénovation.</p>
+                        <div class="flex space-x-2">
+                            <input type="email" name="EMAIL" required placeholder="Ton email..." class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none">
+                            <button type="submit" class="bg-[var(--brand-blue)] text-white px-5 py-3 rounded-xl text-[10px] h3-button uppercase tracking-widest">OK</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- FOOTER SOCIALS -->
+                <div class="grid grid-cols-4 gap-4 px-2 py-8 opacity-60">
+                    <a href="https://instagram.com/flo_perspectives" class="flex justify-center text-white p-4 glass-card rounded-full interactive-link">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#fdf497"/><stop offset="45%" style="stop-color:#fd5949"/><stop offset="60%" style="stop-color:#d6249f"/><stop offset="90%" style="stop-color:#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#insta-gradient)"/></svg>
+                    </a>
+                    <a href="https://tiktok.com/@flo_perspectives" class="flex justify-center text-white p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg></a>
+                    <a href="#" class="flex justify-center text-red-500 p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    <a href="#" class="flex justify-center text-blue-400 p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                </div>
+
+                <footer class="mt-8 flex flex-col items-center pt-10 border-t border-white/5 text-center pb-20 opacity-20">
+                    <p class="text-[8px] h1-title tracking-[0.5em]">© 2026 FLO PERSPECTIVES</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2 : ARSENAL (PERPLEXITY)           -->
+    <!-- ========================================== -->
+    <div id="section-arsenal" class="hidden fade-in">
+        <div class="max-w-md mx-auto px-6">
+            <header class="pt-16 pb-4">
+                <!-- BOUTON RETOUR CÂBLÉ DIRECTEMENT -->
+                <button id="btn-close-arsenal" onclick="switchView('home')" class="flex items-center text-slate-500 hover:text-white transition-colors text-10px h3-button uppercase tracking-widest mb-6 cursor-pointer">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M15 19l-7-7 7-7"/></svg>
+                    Retour
+                </button>
+                <h2 class="h1-title text-2xl text-white tracking-tight leading-none">L'Arsenal</h2>
+                <p class="sub-text text-sm text-slate-400 mt-2 leading-tight">Expertise technique validée sur le terrain.</p>
+            </header>
+
+            <!-- FILTRES REDESIGNÉS (MODERNE) -->
+            <div class="sticky top-0 z-50 bg-[#0F172A]/95 backdrop-blur-xl -mx-6 px-6 py-5 border-b border-white/5 shadow-lg">
+                <div class="flex flex-col space-y-4">
+                    <div class="flex space-x-2 overflow-x-auto hide-scrollbar w-full">
+                        <button onclick="filterTools('cat', 'Tous')" data-type="cat" data-val="Tous" class="filter-pill active-pill px-4 py-2.5 rounded-xl text-[11px] font-bold uppercase whitespace-nowrap transition-all border border-transparent">Tout</button>
+                        <button onclick="filterTools('cat', 'Electroportatif')" data-type="cat" data-val="Electroportatif" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap transition-all border border-white/10 hover:border-white/30 hover:text-white">Machines</button>
+                        <button onclick="filterTools('cat', 'Placo')" data-type="cat" data-val="Placo" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap transition-all border border-white/10 hover:border-white/30 hover:text-white">Placo</button>
+                        <button onclick="filterTools('cat', 'Electricité')" data-type="cat" data-val="Electricité" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap transition-all border border-white/10 hover:border-white/30 hover:text-white">Élec</button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Gamme de prix</span>
+                        <div class="flex bg-slate-800/50 rounded-lg p-1 border border-white/5">
+                            <button onclick="filterTools('bud', 'Tous')" data-type="bud" data-val="Tous" class="budget-seg active-seg px-3 py-1.5 rounded-md text-[10px] font-bold text-white transition-all">Tous</button>
+                            <button onclick="filterTools('bud', '€')" data-type="bud" data-val="€" class="budget-seg px-3 py-1.5 rounded-md text-[10px] text-slate-400 font-medium transition-all hover:text-white">DIY</button>
+                            <button onclick="filterTools('bud', '€€')" data-type="bud" data-val="€€" class="budget-seg px-3 py-1.5 rounded-md text-[10px] text-slate-400 font-medium transition-all hover:text-white">Bricoleur</button>
+                            <button onclick="filterTools('bud', '€€€')" data-type="bud" data-val="€€€" class="budget-seg px-3 py-1.5 rounded-md text-[10px] text-slate-400 font-medium transition-all hover:text-white">Pro</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATALOGUE -->
+            <div id="arsenal-grid" class="grid grid-cols-2 gap-4 pb-24 mt-8">
+                <div class="loading col-span-2 text-center py-10">
+                    <div class="loading-spinner"></div>
+                    <p class="text-xs text-slate-400">Chargement de l'outillage...</p>
+                </div>
+            </div>
+
+            <footer class="mt-20 border-t border-white/5 pt-10 text-center pb-20 opacity-20">
+                <p class="text-[8px] h1-title tracking-[0.5em]">© 2026 FLO PERSPECTIVES</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- SCRIPT GESTION GLOBALE -->
+    <script>
+        // --- FONCTIONS GLOBALES ---
+        function copyCode(text, btn) {
+            const el = document.createElement('textarea'); el.value = text;
+            document.body.appendChild(el); el.select(); document.execCommand('copy');
+            document.body.removeChild(el);
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span>CODE COPIÉ !</span>';
+            btn.style.backgroundColor = 'var(--brand-light-green)'; btn.style.color = '#0F172A';
+            setTimeout(() => { btn.innerHTML = originalHTML; btn.style.backgroundColor = ''; btn.style.color = ''; }, 2000);
+        }
+
+        function handleNewsletterSubmit(form) {
+            const toast = document.getElementById('toast');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            trackClick('Newsletter_Submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = "..."; submitBtn.disabled = true;
+            setTimeout(() => {
+                if(toast) { toast.classList.add('show'); setTimeout(() => { toast.classList.remove('show'); }, 4000); }
+                submitBtn.innerHTML = originalText; submitBtn.disabled = false; form.reset();
+            }, 800);
+        }
+
+        // --- NAVIGATION ROBUSTE (Définie Globalement) ---
+        let isCatalogLoaded = false;
+        
+        window.switchView = function(target) {
+            window.scrollTo(0, 0);
+            const home = document.getElementById('section-home');
+            const arsenal = document.getElementById('section-arsenal');
+            
+            if (target === 'arsenal') {
+                if(home) home.classList.add('hidden');
+                if(arsenal) arsenal.classList.remove('hidden');
+                if (!isCatalogLoaded && typeof loadCatalog === 'function') {
+                    loadCatalog();
+                    isCatalogLoaded = true;
+                }
+            } else {
+                if(arsenal) arsenal.classList.add('hidden');
+                if(home) home.classList.remove('hidden');
+            }
+        };
+
+        // --- LOGIQUE CATALOGUE ---
+        const brandColors = {
+            'FESTOOL': '#2ba966', 'MILWAUKEE': '#e61e2a', 'DEWALT': '#febd17',
+            'EDMA': '#214373', 'KNIPEX': '#D3202E', 'BSIDE': '#1A1A1A',
+            'JOKARI': '#FFCC00', 'FLUKE': '#FFC20E', 'STANLEY': '#FFCD00',
+            'DELKO': '#D3202E', 'HUEPAR': '#58B648', 'CUTTRAB': '#E63946'
+        };
+
+        let toolsData = [];
+        let filteredData = [];
+
+        function getTextColor(bgColor) {
+            const hex = bgColor.replace('#', '');
+            const r = parseInt(hex.substr(0, 2), 16);
+            const g = parseInt(hex.substr(2, 2), 16);
+            const b = parseInt(hex.substr(4, 2), 16);
+            return ((r * 299 + g * 587 + b * 114) / 1000) > 128 ? '#000' : '#fff';
+        }
+
+        async function loadCatalog() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/florianferry/landingpageIG/main/catalogue-outillage-V3.csv');
+                if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+                const csv = await response.text();
+                
+                const lines = csv.trim().split('\n');
+                const headers = lines[0].split(';').map(h => h.trim());
+                
+                toolsData = lines.slice(1).map(line => {
+                    const values = line.split(';').map(v => v.trim());
+                    const obj = {};
+                    headers.forEach((header, index) => { obj[header] = values[index] || ''; });
+                    return obj;
+                }).filter(item => item.marque);
+
+                filteredData = [...toolsData];
+                renderCatalog();
+            } catch (error) {
+                console.error('Erreur chargement:', error);
+                const grid = document.getElementById('arsenal-grid');
+                if(grid) grid.innerHTML = `<div class="col-span-2 text-center py-10 text-red-400"><p>Erreur de connexion au catalogue.</p></div>`;
+            }
+        }
+
+        function renderCatalog() {
+            const grid = document.getElementById('arsenal-grid');
+            if (!grid) return;
+
+            if (filteredData.length === 0) {
+                grid.innerHTML = '<div class="col-span-2 text-center text-slate-500 py-10">Aucun outil ne correspond.</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredData.map((tool) => {
+                const brandColor = brandColors[tool.marque] || '#666666';
+                const textColor = getTextColor(brandColor);
+                
+                // URLs Officielles
+                const amazonUrl = 'https://florianferry.github.io/landingpageIG/assets/logos/amazon-logo.png';
+                const lmUrl = 'https://florianferry.github.io/landingpageIG/assets/logos/leroymerlin-logo.png';
+                // SVG ManoMano (Bleu Foncé pour fond Silver)
+                const manoSvg = `<svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-auto text-[#183650]"><path d="M19,5V19H5V5H19M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3Z"/><path d="M14.8,11.2C14.5,11.2 14.2,11.3 14,11.4C13.9,11.5 13.8,11.6 13.8,11.7V13.5H12.2V8.6H13.8V9.6C14,9.3 14.4,9 14.9,9C15.6,9 16.1,9.6 16.1,10.6V13.5H14.5V11.4C14.5,11.3 14.5,11.2 14.6,11.2ZM9.4,8.6V13.5H7.8V9.8L6.5,11L5.2,9.8V13.5H3.6V8.6H5.2L6.5,9.9L7.8,8.6H9.4Z"/></svg>`;
+
+                const links = [];
+                // Amazon : h-4 (16px) pour ne pas être trop gras mais visible
+                if (tool.url_amazon?.trim()) links.push({ url: tool.url_amazon, content: `<img src="${amazonUrl}" class="h-4 w-auto object-contain" alt="Amazon">` });
+                // Leroy Merlin : h-7 (28px) pour compenser sa forme triangulaire
+                if (tool.url_leroy_merlin?.trim()) links.push({ url: tool.url_leroy_merlin, content: `<img src="${lmUrl}" class="h-7 w-auto object-contain -my-1 scale-110" alt="Leroy Merlin">` });
+                // ManoMano : h-5 (20px) standard
+                if (tool.url_manomano?.trim()) links.push({ url: tool.url_manomano, content: manoSvg });
+
+                return `
+                    <div class="tool-item">
+                        <div class="vignette-card">
+                            <div class="vignette-image">
+                                <span class="brand-label" style="background:${brandColor};color:${textColor}">${tool.marque}</span>
+                                <span class="budget-badge">${tool.budget}</span>
+                                <img src="https://florianferry.github.io/landingpageIG/assets/catalogue/output/${tool.image.split('/').pop().replace(/\.(webp|jpg|jpeg)$/i, '.png')}" 
+                                     alt="${tool.modele}" loading="lazy" onerror="this.style.display='none'">
+                            </div>
+                            <div class="p-3 flex-1 flex flex-col text-left">
+                                <h4 class="h3-button text-[11px] text-white uppercase leading-tight">${tool.modele}</h4>
+                                <p class="text-[11px] text-slate-500 mt-1 flex-1 leading-tight">${tool.description}</p>
+                                <div class="flex justify-center items-center gap-2 mt-4 w-full px-2">
+                                    ${links.map(link => `<a href="${link.url}" target="_blank" class="btn-affiliate flex-1">${link.content}</a>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.filterTools = function(type, value) {
+            // Gestion des Pills Catégories
+            if (type === 'cat') {
+                document.querySelectorAll(`.filter-pill`).forEach(p => {
+                    if (p.dataset.val === value) {
+                        p.classList.add('active-pill');
+                        p.classList.remove('border-white/10', 'text-slate-400');
+                        p.classList.add('border-transparent');
+                    } else {
+                        p.classList.remove('active-pill', 'border-transparent');
+                        p.classList.add('border-white/10', 'text-slate-400');
+                    }
+                });
+            }
+            // Gestion des Segments Budget
+            if (type === 'bud') {
+                document.querySelectorAll(`.budget-seg`).forEach(p => {
+                    if (p.dataset.val === value) {
+                        p.classList.add('active-seg', 'font-bold', 'text-white');
+                        p.classList.remove('text-slate-400', 'font-medium');
+                    } else {
+                        p.classList.remove('active-seg', 'font-bold', 'text-white');
+                        p.classList.add('text-slate-400', 'font-medium');
+                    }
+                });
+            }
+
+            const activeCat = document.querySelector('.filter-pill.active-pill')?.dataset.val || 'Tous';
+            const activeBud = document.querySelector('.budget-seg.active-seg')?.dataset.val || 'Tous';
+            
+            filteredData = toolsData.filter(item => {
+                return (activeCat === 'Tous' || item.categorie === activeCat) && 
+                       (activeBud === 'Tous' || item.budget === activeBud);
+            });
+            renderCatalog();
+        };
+    </script>
+</body>
+</html>
