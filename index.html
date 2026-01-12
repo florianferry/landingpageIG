@@ -10,18 +10,42 @@
     <!-- End Google Tag Manager -->
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FLO PERSPECTIVES | Liens Officiels</title>
     
     <script>
-      // Système de tracking via DataLayer (Standard GTM)
-      // Permet de capturer l'info sur GTM sans dépendre d'un ID GA4 en dur
       function trackClick(elementName) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           'event': 'button_interaction',
           'element_name': elementName
         });
+      }
+
+      function switchView(viewId) {
+        const home = document.getElementById('home-view');
+        const tools = document.getElementById('tools-view');
+        if (viewId === 'tools') {
+            home.style.display = 'none';
+            tools.style.display = 'block';
+            window.scrollTo(0, 0);
+            trackClick('Open_Arsenal');
+        } else {
+            tools.style.display = 'none';
+            home.style.display = 'block';
+            window.scrollTo(0, 0);
+            trackClick('Back_To_Home');
+        }
+      }
+
+      function filterTools(category) {
+        const items = document.querySelectorAll('.tool-item');
+        const pills = document.querySelectorAll('.filter-pill');
+        pills.forEach(p => p.classList.toggle('active-pill', p.dataset.cat === category));
+        items.forEach(item => {
+            item.style.display = (category === 'all' || item.dataset.cat === category) ? 'block' : 'none';
+        });
+        trackClick('Filter_' + category);
       }
     </script>
 
@@ -34,7 +58,9 @@
         :root {
             --brand-light-green: #A0E8DF;
             --brand-blue: #00A8BA;
-            --brand-dark-green: #0A6670;
+            --brand-festool: #2ba966;
+            --brand-milwaukee: #e61e2a;
+            --brand-dewalt: #febd17;
             --bg-color: #0F172A; 
             --card-bg: rgba(30, 41, 59, 0.4);
             --border-color: rgba(255, 255, 255, 0.05);
@@ -70,9 +96,7 @@
         }
         
         .section-header::after {
-            content: '';
-            flex: 1;
-            height: 1px;
+            content: ''; flex: 1; height: 1px;
             background: linear-gradient(to right, rgba(160, 232, 223, 0.2), transparent);
             margin-left: 1.25rem;
         }
@@ -82,11 +106,11 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
+            border-radius: 2rem;
         }
 
         .interactive-link {
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease;
-            will-change: transform;
         }
 
         @media (hover: hover) {
@@ -94,99 +118,110 @@
         }
 
         .cta-priority {
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
             background-color: var(--brand-blue);
             box-shadow: 0 10px 25px -5px rgba(0, 168, 186, 0.3);
+            border-radius: 1.5rem;
         }
 
         .cta-priority::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
+            content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%;
             background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
-            transform: rotate(25deg);
-            animation: shimmer 4s infinite;
+            transform: rotate(25deg); animation: shimmer 4s infinite;
         }
 
         @keyframes shimmer { 0% { left: -60%; } 30% { left: 140%; } 100% { left: 140%; } }
         @keyframes bounce-x-soft { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
-        
         .animate-arrow-bounce { animation: bounce-x-soft 1.5s ease-in-out infinite; }
 
         .reel-thumbnail-small { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 1rem; background: #000; }
         .reel-thumbnail-vertical { position: relative; aspect-ratio: 9/16; overflow: hidden; border-radius: 1.25rem; background: #000; }
 
         .insta-overlay {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 0.85rem;
+            display: flex; flex-direction: column; justify-content: space-between; padding: 0.85rem;
         }
 
         .play-btn-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(4px);
-            border-radius: 50%;
-            padding: 0.85rem;
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(4px);
+            border-radius: 50%; padding: 0.85rem; border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
-        .stat-icon { width: 14px; height: 14px; flex-shrink: 0; }
+        /* ARSENAL VIGNETTES */
+        .vignette-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .vignette-image {
+            aspect-ratio: 1.1/1;
+            background: rgba(255, 255, 255, 0.01);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .brand-label {
+            position: absolute; top: 8px; left: 8px;
+            font-size: 7px; font-weight: 900; text-transform: uppercase;
+            padding: 3px 6px; border-radius: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-affiliate {
+            font-size: 7px; font-weight: 800; text-transform: uppercase;
+            padding: 9px 2px; border-radius: 8px; text-align: center;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s ease;
+        }
+        .btn-affiliate:active { transform: scale(0.95); background: rgba(255,255,255,0.1); }
+
+        .active-pill {
+            background-color: var(--brand-blue) !important;
+            color: white !important;
+            border-color: transparent !important;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .hidden { display: none !important; }
 
         #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: rgba(160, 232, 223, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--brand-light-green);
-            color: #fff;
-            text-align: center;
-            border-radius: 1rem;
-            padding: 1rem;
-            position: fixed;
-            z-index: 100;
-            left: 50%;
-            top: 30px;
-            transform: translateX(-50%);
-            transition: all 0.5s ease;
-            opacity: 0;
+            visibility: hidden; min-width: 250px; background-color: rgba(160, 232, 223, 0.1);
+            backdrop-filter: blur(12px); border: 1px solid var(--brand-light-green); color: #fff;
+            text-align: center; border-radius: 1rem; padding: 1rem; position: fixed; z-index: 100;
+            left: 50%; top: 30px; transform: translateX(-50%); transition: all 0.5s ease; opacity: 0;
         }
-
         #toast.show { visibility: visible; opacity: 1; top: 50px; }
     </style>
 </head>
 <body class="min-h-screen pb-16 antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M27JZQJN"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M27JZQJN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div id="toast" class="sub-text font-medium text-sm">
-        <span class="text-[var(--brand-light-green)] mr-2">✓</span> Inscription réussie ! Bienvenue.
+        <span class="text-[var(--brand-light-green)] mr-2">✓</span> Inscription réussie !
     </div>
 
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
-    <div class="max-w-md mx-auto px-6">
-        
+    <!-- ========================================== -->
+    <!-- VUE 1 : HOME (SACRÉE & COMPLÈTE) -->
+    <!-- ========================================== -->
+    <div id="home-view" class="max-w-md mx-auto px-6">
         <header class="pt-20 pb-12 flex flex-col items-center text-center">
             <div class="mb-8">
                 <div class="w-24 h-24 rounded-full overflow-hidden shadow-2xl">
-                    <img src="Insta profile pic2 2.webp" alt="Flo Perspectives" 
-                         fetchpriority="high" 
-                         class="w-full h-full object-cover" 
-                         onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Flo'">
+                    <img src="Insta profile pic2 2.webp" alt="Flo Perspectives" class="w-full h-full object-cover">
                 </div>
             </div>
             <h1 class="text-2xl h1-title tracking-tight text-[var(--brand-light-green)]">FLO PERSPECTIVES</h1>
@@ -205,75 +240,76 @@
         </header>
 
         <div class="space-y-14">
-            
+            <!-- PIVOT VERS ARSENAL -->
+            <section>
+                <button onclick="switchView('tools')" class="w-full glass-card border-[var(--brand-blue)]/40 flex items-center p-6 text-white group interactive-link shadow-xl">
+                    <div class="bg-[var(--brand-blue)]/20 p-3 rounded-2xl mr-4">
+                        <svg class="w-6 h-6 text-[var(--brand-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <h3 class="h3-button text-sm tracking-tight uppercase">L'Arsenal de Nancy</h3>
+                        <p class="text-[12px] sub-text opacity-70">Mon outillage organisé par métier</p>
+                    </div>
+                    <svg class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </section>
+
+            <!-- PROJET APP -->
             <section>
                 <h2 class="section-header">Mon Projet à venir</h2>
                 <a href="https://tally.so/r/RGKbWd" onclick="trackClick('Questionnaire_App')" target="_blank" class="cta-priority flex items-center p-6 text-white rounded-3xl group interactive-link">
-                    <div class="bg-white/10 p-3 rounded-2xl mr-4 z-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                    </div>
+                    <div class="bg-white/10 p-3 rounded-2xl mr-4 z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
                     <div class="flex-1 text-left z-10">
-                        <h3 class="h3-button text-sm tracking-tight uppercase">Bâtissons ensemble l'outil de rénovation idéal</h3>
+                        <h3 class="h3-button text-sm tracking-tight uppercase leading-tight">Bâtissons ensemble l'outil de rénovation idéal</h3>
                         <p class="text-[12px] sub-text opacity-90 font-medium">Répondre au questionnaire (2 min)</p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
             </section>
 
+            <!-- ATELIER & RACK -->
             <section>
                 <h2 class="section-header">Atelier & Fabrication</h2>
-                <div class="glass-card rounded-[2rem] p-4 flex items-center space-x-5 border border-[var(--brand-light-green)]/10 shadow-lg">
-                    <a href="https://www.instagram.com/reel/DIg27phxj3G/?igsh=YmJ5d2p2NTdzbjh0" onclick="trackClick('Reel_Rack')" target="_blank" class="reel-thumbnail-small w-24 flex-shrink-0 interactive-link group">
-                        <img src="miniature rack.webp" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=200'">
-                        <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/20"><svg class="w-8 h-8 text-white fill-current opacity-90" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                    </a>
+                <div class="glass-card rounded-[2rem] p-4 flex items-center space-x-5 shadow-lg border border-[var(--brand-light-green)]/10">
+                    <div class="reel-thumbnail-small w-24 flex-shrink-0">
+                        <img src="miniature rack.webp" class="w-full h-full object-cover opacity-80">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20"><svg class="w-8 h-8 text-white fill-current opacity-90" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
                     <div class="flex-1 py-1 text-left">
-                        <div class="flex items-center space-x-2 mb-1.5">
-                            <h3 class="h3-button text-xs text-white uppercase tracking-tight">Rack Serre-joints</h3>
-                            <span class="bg-[var(--brand-light-green)]/20 text-[var(--brand-light-green)] text-[8px] font-bold px-1.5 py-0.5 rounded-md uppercase">Guide PDF</span>
-                        </div>
+                        <h3 class="h3-button text-xs text-white uppercase tracking-tight mb-1.5">Rack Serre-joints</h3>
                         <p class="text-[13px] sub-text text-slate-400 leading-snug mb-4">Plan complet pour fabriquer ton rack modulaire.</p>
-                        <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view?usp=sharing" onclick="trackClick('Download_PDF_Rack')" target="_blank" class="inline-flex items-center text-[10px] h3-button text-[var(--brand-light-green)] uppercase tracking-widest font-bold">
-                            Télécharger le plan <svg class="w-3 h-3 ml-2 animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view" onclick="trackClick('Download_PDF_Rack')" target="_blank" class="inline-flex items-center text-[10px] h3-button text-[var(--brand-light-green)] uppercase tracking-widest font-bold">
+                            Télécharger le plan <svg class="w-3 h-3 ml-2 animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </a>
                     </div>
                 </div>
             </section>
 
+            <!-- JOURNAL -->
             <section>
                 <h2 class="section-header">Journal de Chantier</h2>
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="https://www.instagram.com/reel/C_BL-v_oTNv/?igsh=cm9pOTF4NHVybWY4" onclick="trackClick('Reel_Ossature')" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group">
-                        <img src="ossature optima.webp" loading="lazy" decoding="async" alt="Ossature Optima" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
-                        <div class="play-btn-overlay"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                        <div class="insta-overlay">
-                            <div class="flex justify-end"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
-                            <div class="space-y-1.5 text-white">
-                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="text-[11px] font-bold">3,6 M</span></div>
-                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="text-[11px] font-bold">7,9 K</span></div>
-                            </div>
+                    <div class="reel-thumbnail-vertical glass-card group interactive-link">
+                        <img src="ossature optima.webp" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-4 flex flex-col justify-end">
+                            <p class="text-[10px] font-bold uppercase text-white tracking-widest leading-none">3,6M Vues</p>
                         </div>
-                    </a>
-                    <a href="https://www.instagram.com/reel/DQ_rNNnjONw/?igsh=MTJvY2MzMTY5cDNmcA==" onclick="trackClick('Reel_Douche')" target="_blank" class="reel-thumbnail-vertical interactive-link shadow-lg group">
-                        <img src="douche lego.webp" loading="lazy" decoding="async" alt="Douche Lego" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
-                        <div class="play-btn-overlay"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                        <div class="insta-overlay">
-                            <div class="flex justify-end"><svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
-                            <div class="space-y-1.5 text-white">
-                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="text-[11px] font-bold">648 K</span></div>
-                                <div class="flex items-center space-x-2"><svg class="stat-icon fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="text-[11px] font-bold">5,2 K</span></div>
-                            </div>
+                    </div>
+                    <div class="reel-thumbnail-vertical glass-card group interactive-link">
+                        <img src="douche lego.webp" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-4 flex flex-col justify-end">
+                            <p class="text-[10px] font-bold uppercase text-white tracking-widest leading-none">648K Vues</p>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </section>
 
+            <!-- RESSOURCES -->
             <section>
                 <h2 class="section-header">Ressources & Outils</h2>
                 <div class="grid grid-cols-2 gap-4">
                     <a href="https://www.amazon.fr/shop/flo_perspectives" onclick="trackClick('Amazon_Shop')" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px]">
                         <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-orange-400"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
-                        <div class="text-left"><h3 class="h3-button text-sm text-white uppercase">Mes essentiels</h3><p class="text-[13px] sub-text text-slate-400 mt-1 leading-tight">outillage sélectionné</p></div>
+                        <div class="text-left"><h3 class="h3-button text-sm text-white uppercase leading-tight">Mes essentiels</h3><p class="text-[13px] sub-text text-slate-400 mt-1 leading-tight">outillage sélectionné</p></div>
                     </a>
                     <a href="https://beacons.ai/flo_perspectives/mediakit" onclick="trackClick('Media_Kit')" target="_blank" class="glass-card interactive-link p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px]">
                         <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-[var(--brand-blue)]"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z"/></svg></div>
@@ -282,12 +318,13 @@
                 </div>
             </section>
 
+            <!-- BONS PLANS -->
             <section>
                 <h2 class="section-header">Bons Plans & Partenariats</h2>
                 <div class="space-y-4">
                     <a href="https://find.ly/2nw" onclick="trackClick('Laser_Huepar')" target="_blank" class="glass-card interactive-link flex items-center p-5 rounded-3xl group">
                         <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mr-4 text-[var(--brand-light-green)]"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                        <div class="flex-1 text-left"><h3 class="h3-button text-sm text-white uppercase tracking-wider">Laser Huepar</h3><p class="text-[13px] sub-text text-slate-400 mt-0.5">L'outil indispensable pour mes chantiers</p></div>
+                        <div class="flex-1 text-left"><h3 class="h3-button text-sm text-white uppercase tracking-wider leading-tight">Laser Huepar</h3><p class="text-[13px] sub-text text-slate-400 mt-0.5">L'outil indispensable pour mes chantiers</p></div>
                         <span class="text-[10px] h3-button text-[var(--brand-blue)] font-bold">VOIR</span>
                     </a>
                     <div class="glass-card rounded-[2rem] overflow-hidden border border-green-500/20">
@@ -299,44 +336,366 @@
                             <h3 class="h3-button text-base text-white mb-2 uppercase text-left">HelloFresh : Dessert à vie</h3>
                             <p class="text-[14px] sub-text text-slate-300 leading-relaxed mb-4 text-left">Repas dès 2,99€ et votre dessert offert à vie sur chaque box.</p>
                             <div class="flex flex-col space-y-3">
-                                <a href="https://www.filify.co/SHFZP" onclick="trackClick('HelloFresh_Lien')" target="_blank" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl flex items-center justify-center">PROFITER DE L'OFFRE</a>
-                                <button onclick="copyCode('HFF4L658', this); trackClick('HelloFresh_Code');" class="w-full border border-white/20 text-white text-[10px] h3-button py-3 rounded-2xl flex items-center justify-center">COPIER LE CODE : HFF4L658</button>
+                                <a href="https://www.filify.co/SHFZP" onclick="trackClick('HelloFresh_Lien')" target="_blank" class="w-full bg-white text-[#0F172A] text-xs h3-button py-4 rounded-2xl active:scale-95 transition-all flex items-center justify-center">PROFITER DE L'OFFRE</a>
+                                <button onclick="copyCode('HFF4L658', this); trackClick('HelloFresh_Code');" class="w-full border border-white/20 text-white text-[10px] h3-button py-3 rounded-2xl active:scale-95 transition-all flex items-center justify-center uppercase">COPIER LE CODE : HFF4L658</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- NEWSLETTER -->
             <section>
                 <h2 class="section-header">Newsletter</h2>
                 <form action="https://ad98909a.sibforms.com/serve/MUIFAJnfjswAvJ0cF9Y_natukPYZfapQ_mBqhwocWrQHDHnEFYf7bq6tL8t5bYsvCjgKLKSLTzvwroI4C8muRL_s32iaMHxjfnXXReD_OjwKa2WbKUNrCa-2w0mWXB6EBqBjnG7gUBPL-_Ns3beF9j3227EWDHoHCME4Zf8s-Bt0A3oW0jZAkjqgZvLYa67YUvL-7xWNhaamUPzBmg==" 
                     method="POST" target="hidden_iframe" onsubmit="handleNewsletterSubmit(this)"
-                    class="p-6 glass-card rounded-[2rem] border-dashed border-[var(--brand-blue)]/30 text-left">
+                    class="p-6 glass-card border-dashed border-[var(--brand-blue)]/30 text-left">
                     <h3 class="h3-button text-sm text-[var(--brand-light-green)] uppercase mb-2">Les Perspectives de Flo</h3>
-                    <p class="text-[13px] sub-text text-slate-300 mb-5 leading-relaxed">Rejoins +300 personnes pour suivre les coulisses de ma rénovation et l'avancement de l'outil.</p>
+                    <p class="text-[13px] sub-text text-slate-300 mb-5 leading-relaxed">Rejoins +300 personnes pour suivre les coulisses.</p>
                     <div class="flex space-x-2">
                         <input type="email" name="EMAIL" required placeholder="Ton email..." class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none">
-                        <button type="submit" class="bg-[var(--brand-blue)] text-white px-5 py-3 rounded-xl text-[10px] h3-button uppercase">S'abonner</button>
+                        <button type="submit" class="bg-[var(--brand-blue)] text-white px-5 py-3 rounded-xl text-[10px] h3-button uppercase tracking-widest">OK</button>
                     </div>
                 </form>
             </section>
 
-            <div class="grid grid-cols-4 gap-4 px-2 py-8">
-                <a href="https://instagram.com/flo_perspectives" onclick="trackClick('Social_Insta')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-white">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#fdf497"/><stop offset="45%" style="stop-color:#fd5949"/><stop offset="60%" style="stop-color:#d6249f"/><stop offset="90%" style="stop-color:#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#insta-gradient)"/></svg>
-                </a>
-                <a href="https://www.tiktok.com/@flo_perspectives" onclick="trackClick('Social_TikTok')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg></a>
-                <a href="https://youtube.com/channel/UCDT_tF_YbZcQiXbksxJbi5g/" onclick="trackClick('Social_YouTube')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-red-500"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-                <a href="https://www.linkedin.com/in/florian-ferry" onclick="trackClick('Social_LinkedIn')" target="_blank" class="flex items-center justify-center p-4 glass-card rounded-full interactive-link text-blue-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <!-- SOCIALS -->
+            <div class="grid grid-cols-4 gap-4 px-2 py-8 opacity-60">
+                <a href="https://instagram.com/flo_perspectives" class="flex justify-center"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="https://tiktok.com/@flo_perspectives" class="flex justify-center"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg></a>
+                <a href="#" class="flex justify-center text-red-500"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="#" class="flex justify-center text-blue-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            </div>
+
+            <footer class="mt-8 flex flex-col items-center pt-10 border-t border-white/5 text-center">
+                <a href="mailto:flo.perspectives@gmail.com" class="inline-flex items-center bg-white hover:bg-slate-100 px-12 py-4 rounded-full text-[#0F172A] text-sm h3-button active:scale-90 shadow-lg">On en discute ?</a>
+                <p class="mt-12 text-[8px] h1-title text-white/5 tracking-[0.4em]">© 2026 FLO PERSPECTIVES</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VUE 2 : L'ARSENAL (CATALOGUE COMPLET SEXY) -->
+    <!-- ========================================== -->
+    <div id="tools-view" class="max-w-md mx-auto px-6" style="display:none;">
+        <header class="pt-16 pb-4">
+            <button onclick="switchView('home')" class="flex items-center text-slate-500 hover:text-white transition-colors text-[10px] h3-button uppercase tracking-widest mb-6">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M15 19l-7-7 7-7"/></svg>
+                Retour
+            </button>
+            <h2 class="h1-title text-2xl text-white tracking-tight">L'Arsenal</h2>
+            <p class="sub-text text-sm text-slate-400 mt-1">Équipement pro testé sur le projet Nancy.</p>
+        </header>
+
+        <!-- FILTRES -->
+        <div class="sticky top-0 z-50 bg-[#0F172A]/90 backdrop-blur-xl -mx-6 px-6 py-4 border-b border-white/5 mb-8">
+            <div class="flex space-x-3 overflow-x-auto hide-scrollbar pb-1">
+                <button onclick="filterTools('all')" data-cat="all" class="filter-pill active-pill border border-white/10 px-5 py-2.5 rounded-full text-[9px] h3-button uppercase whitespace-nowrap">Tout</button>
+                <button onclick="filterTools('electro')" data-cat="electro" class="filter-pill border border-white/10 px-5 py-2.5 rounded-full text-[9px] h3-button uppercase whitespace-nowrap">Machines</button>
+                <button onclick="filterTools('placo')" data-cat="placo" class="filter-pill border border-white/10 px-5 py-2.5 rounded-full text-[9px] h3-button uppercase whitespace-nowrap">Placo</button>
+                <button onclick="filterTools('elec')" data-cat="elec" class="filter-pill border border-white/10 px-5 py-2.5 rounded-full text-[9px] h3-button uppercase whitespace-nowrap">Elec</button>
             </div>
         </div>
 
-        <footer class="mt-8 flex flex-col items-center pt-10 border-t border-white/5 text-center">
-            <h4 class="text-xs sub-text font-bold text-slate-500 uppercase tracking-widest mb-6">Une idée ? Écris-moi.</h4>
-            <a href="mailto:flo.perspectives@gmail.com" onclick="trackClick('Footer_Email')" class="inline-flex items-center bg-white hover:bg-slate-100 px-12 py-4 rounded-full text-[#0F172A] text-sm h3-button active:scale-90 shadow-lg">On en discute ?</a>
-            <p class="mt-12 text-[8px] h1-title text-white/5 tracking-[0.4em]">© 2026 FLO PERSPECTIVES</p>
-        </footer>
+        <div id="arsenal-grid" class="grid grid-cols-2 gap-4 pb-24">
+            
+            <!-- FESTOOL -->
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">🔋</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">TXS 18</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Visseuse ultra-compacte.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">🪚</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Plongeante + Rail</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Coupes millimétrées.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">📐</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Planex</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Ponceuse girafe murs.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">🌪️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Aspi Planex</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Zéro poussière sur plâtre.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">🌪️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Aspi MIDI</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Polyvalent et compact.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">🪚</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Scie sauteuse</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Contrôle et précision.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-festool)] text-white">Festool</span><div class="text-2xl">💥</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Mitraillette Placo</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Vissage auto en série.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- MILWAUKEE -->
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-milwaukee)] text-white">Milwaukee</span><div class="text-2xl">⚙️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Scie sur table</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">M18 FUEL : Puissance brute.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-milwaukee)] text-white">Milwaukee</span><div class="text-2xl">💡</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Tour éclairage</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">2500 Lm sur batterie.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-milwaukee)] text-white">Milwaukee</span><div class="text-2xl">🪚</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Scie onglet radiale</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Précision M18.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-milwaukee)] text-white">Milwaukee</span><div class="text-2xl">⭕</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Scie circulaire</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Puissance sans fil fuel.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-milwaukee)] text-white">Milwaukee</span><div class="text-2xl">🔫</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Pistolet à colle</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Étanchéité et fixation.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEWALT -->
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-dewalt)] text-black">Dewalt</span><div class="text-2xl">🌬️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Souffleur</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Nettoyage rapide chantier.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-dewalt)] text-black">Dewalt</span><div class="text-2xl">🛠️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Meuleuse</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Brushless XR 125mm.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-dewalt)] text-black">Dewalt</span><div class="text-2xl">⚡</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Multi tool</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Le couteau suisse réno.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-[var(--brand-dewalt)] text-black">Dewalt</span><div class="text-2xl">💥</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Visseuse à choc</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Couple extrême 205Nm.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HUEPAR -->
+            <div class="tool-item" data-cat="electro">
+                <div class="vignette-card border-green-500/20">
+                    <div class="vignette-image"><span class="brand-label bg-green-500 text-black">Huepar</span><div class="text-2xl">🎯</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Laser 4D</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Alignement parfait rails.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate">Leroy M.</a><a href="#" class="btn-affiliate">Mano</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLACO (Amazon + LM) -->
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">Stanley</span><div class="text-2xl">🤲</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Poignée Transport</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Déplacement facile plaques.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">📏</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Niveau 90cm</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Spécial rails, aimanté.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">✂️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Guillotine</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Coupe rails sans bruit.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">✂️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Pince Dos à Dos</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Sertissage montants.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">✂️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Ultra Profil</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Pince à sertir pro.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">📏</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Règle découper</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Spécial plaque de plâtre.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">✂️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Cisaille passe franc</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Coupe continue facile.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">EDMA</span><div class="text-2xl">🧱</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Blocplac Cale</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Maintien plaques au sol.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">DELKO</span><div class="text-2xl">📐</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">Banjo Hybrid</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Collage bandes ultra-fast.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="placo">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/10 text-slate-400">CUTTRAB</span><div class="text-2xl">🔪</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Cutter rabot</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">2 en 1 finitions placo.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ELEC (Amazon + LM) -->
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-blue-600/30 text-blue-400">Knipex</span><div class="text-2xl">🐍</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Pince dégainer</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Modèle chromé précision.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-blue-600/30 text-blue-400">Knipex</span><div class="text-2xl">✂️</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Pince coupante</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Coupe de côté universelle.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-blue-600/30 text-blue-400">Knipex</span><div class="text-2xl">🔧</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">ErgoStrip</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Dénudage multicâbles.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-blue-600/30 text-blue-400">Knipex</span><div class="text-2xl">🍵</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">TwistCup</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Coupe nette gaines.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-blue-600/30 text-blue-400">Knipex</span><div class="text-2xl">📏</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Dégainer Prof.</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Boîtiers encastrés.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/5 text-slate-400">BSIDE</span><div class="text-2xl">📡</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase">FWT81</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Traçage de câbles.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/5 text-slate-400">JOKARI</span><div class="text-2xl">⚡</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Pince Auto</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">Dénudage automatique.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-item" data-cat="elec">
+                <div class="vignette-card">
+                    <div class="vignette-image"><span class="brand-label bg-white/5 text-slate-400">FLUKE</span><div class="text-2xl">🔎</div></div>
+                    <div class="p-3 flex-1 flex flex-col"><h4 class="h3-button text-[9px] text-white uppercase leading-tight">Détecteur Indu</h4><p class="text-[8px] text-slate-500 mt-1 flex-1 leading-tight">FLK2AC industriel.</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4"><a href="#" class="btn-affiliate text-orange-400">Amazon</a><a href="#" class="btn-affiliate">Leroy M.</a></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-20 border-t border-white/5 pt-10 text-center pb-20 opacity-20">
+            <p class="text-[8px] h1-title tracking-[0.5em]">© 2026 FLO PERSPECTIVES</p>
+        </footer>
     </div>
 
     <script>
@@ -356,7 +715,7 @@
             submitBtn.innerHTML = "..."; submitBtn.disabled = true;
             setTimeout(() => {
                 toast.classList.add('show');
-                submitBtn.innerHTML = "S'abonner"; submitBtn.disabled = false;
+                submitBtn.innerHTML = "OK"; submitBtn.disabled = false;
                 form.reset();
                 setTimeout(() => { toast.classList.remove('show'); }, 5000);
             }, 800);
