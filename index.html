@@ -368,12 +368,19 @@
 
             <div class="sticky top-0 z-50 bg-[#0F172A]/95 backdrop-blur-xl -mx-6 px-6 py-5 border-b border-white/5 shadow-lg">
                 <div class="flex flex-col space-y-4">
-                    <div class="flex space-x-2 overflow-x-auto hide-scrollbar w-full">
-                        <button onclick="filterTools('cat', 'Tous')" data-type="cat" data-val="Tous" class="filter-pill active-pill px-4 py-2.5 rounded-xl text-[11px] font-bold uppercase whitespace-nowrap">Tout</button>
-                        <button onclick="filterTools('cat', 'Electroportatif')" data-type="cat" data-val="Electroportatif" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Machines</button>
-                        <button onclick="filterTools('cat', 'Placo')" data-type="cat" data-val="Placo" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Placo</button>
-                        <button onclick="filterTools('cat', 'Electricité')" data-type="cat" data-val="Electricité" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Élec</button>
-                    </div>
+                        <div class="flex space-x-2 overflow-x-auto hide-scrollbar w-full px-1">
+                            <button onclick="filterTools('cat', 'Tous')" data-type="cat" data-val="Tous" class="filter-pill active-pill px-4 py-2.5 rounded-xl text-[11px] font-bold uppercase whitespace-nowrap">Tout</button>
+                            
+                            <button onclick="filterTools('cat', 'Electroportatif')" data-type="cat" data-val="Electroportatif" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Machines</button>
+                            <button onclick="filterTools('cat', 'Placo')" data-type="cat" data-val="Placo" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Placo</button>
+                            <button onclick="filterTools('cat', 'Electricité')" data-type="cat" data-val="Electricité" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Élec</button>
+                            
+                            <button onclick="filterTools('cat', 'Enduit')" data-type="cat" data-val="Enduit" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Enduit</button>
+                            <button onclick="filterTools('cat', 'Peinture')" data-type="cat" data-val="Peinture" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Peinture</button>
+                            <button onclick="filterTools('cat', 'Mesure & Marquage')" data-type="cat" data-val="Mesure & Marquage" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Mesure</button>
+                            <button onclick="filterTools('cat', 'Serrage & Assemblage')" data-type="cat" data-val="Serrage & Assemblage" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Serrage</button>
+                            <button onclick="filterTools('cat', 'Support & Logistique')" data-type="cat" data-val="Support & Logistique" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Support</button>
+                        </div>
                     <div class="flex items-center justify-between">
                         <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Gamme de prix</span>
                         <div class="flex bg-slate-800/50 rounded-lg p-1 border border-white/5">
@@ -441,10 +448,22 @@
         let state = { tools: [], loaded: false };
 
         const brandColors = {
-            'FESTOOL': '#2ba966', 'MILWAUKEE': '#e61e2a', 'DEWALT': '#febd17', 'EDMA': '#214373',
-            'KNIPEX': '#D3202E', 'BSIDE': '#1A1A1A', 'JOKARI': '#FFCC00', 'FLUKE': '#FFC20E',
-            'STANLEY': '#FFCD00', 'DELKO': '#D3202E', 'HUEPAR': '#58B648', 'CUTTRAB': '#E63946'
-        };
+                    // Marques Existantes
+                    'FESTOOL': '#2ba966', 'MILWAUKEE': '#e61e2a', 'DEWALT': '#febd17', 'EDMA': '#214373',
+                    'KNIPEX': '#D3202E', 'BSIDE': '#1A1A1A', 'JOKARI': '#FFCC00', 'FLUKE': '#FFC20E',
+                    'STANLEY': '#FFCD00', 'DELKO': '#D3202E', 'HUEPAR': '#58B648', 'CUTTRAB': '#E63946',
+                    
+                    // NOUVELLES MARQUES (Couleurs Officielles)
+                    "L'OUTIL PARFAIT": '#005596', // Bleu corporate
+                    'TESA': '#E30613',            // Rouge Tesa
+                    'GRACO': '#004A97',           // Bleu Graco
+                    'WAGNER': '#FFC600',          // Jaune Wagner
+                    'PICA': '#333333',            // Gris Anthracite (Capuchon)
+                    'TAJIMA': '#F5E025',          // Jaune Tajima
+                    'WOLFCRAFT': '#004692',       // Bleu Wolfcraft
+                    'LITTLE GIANT': '#F57F25',    // Orange Little Giant
+                    'KREG': '#00366D'             // Bleu Kreg
+                };
 
         // --- 3. NAVIGATION OPTIMISÉE ---
         window.switchView = function(target) {
