@@ -38,8 +38,9 @@
             align-items: center;
             justify-content: center;
             -webkit-font-smoothing: antialiased;
-            overflow: hidden;
+            overflow-y: auto; /* Permet le scroll sur mobile */
             position: relative;
+            padding: 2.5rem 1.5rem; /* Padding pour éviter d'être collé aux bords */
         }
 
         /* Grille de plan / Blueprint Grid */
@@ -114,7 +115,7 @@
 
     </style>
 </head>
-<body class="p-6">
+<body class="antialiased">
 
     <main class="max-w-md w-full fade-in-up">
         
@@ -155,9 +156,9 @@
             </footer>
         </div>
 
-        <!-- Back Link (optional but good for UX) -->
-        <div class="mt-10 text-center">
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 hover:text-white transition-colors duration-300">
+        <!-- Back Link -->
+        <div class="mt-10 text-center pb-8">
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 hover:text-white transition-colors duration-300">
                 Retour au site
             </a>
         </div>
