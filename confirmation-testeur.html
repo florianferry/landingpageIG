@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C’est noté ! - FLO PERSPECTIVES</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat, Hind Vadodara, Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Hind+Vadodara:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. VARIABLES GLOBALES (Matching index.html) --- */
+        :root {
+            --brand-light-green: #A0E8DF;
+            --brand-blue: #00A8BA;
+            --bg-color: #0F172A; 
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --border-color: rgba(255, 255, 255, 0.05);
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-sub: 'Hind Vadodara', sans-serif;
+            --font-text: 'Roboto', sans-serif;
+        }
+
+        /* --- 2. BASE & BACKGROUND --- */
+        body {
+            font-family: var(--font-text);
+            background-color: var(--bg-color);
+            background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-color) 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Grille de plan / Blueprint Grid */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- 3. UI COMPONENTS --- */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .h1-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--brand-light-green);
+        }
+
+        .sub-text {
+            font-family: var(--font-sub);
+        }
+
+        /* Animation d'entrée */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Symbole de brique minimaliste */
+        .brick-icon {
+            width: 24px;
+            height: 14px;
+            background-color: var(--brand-blue);
+            opacity: 0.3;
+            border-radius: 2px;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .brick-icon::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 28px;
+            width: 24px; height: 14px;
+            background-color: var(--brand-blue);
+            border-radius: 2px;
+        }
+
+    </style>
+</head>
+<body class="p-6">
+
+    <main class="max-w-md w-full fade-in-up">
+        
+        <!-- Subtle Branding Icon -->
+        <div class="flex justify-center mb-8">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white/5 p-1">
+                <img src="Insta profile pic2 2.webp" alt="Flo Perspectives" class="w-full h-full object-cover rounded-full">
+            </div>
+        </div>
+
+        <!-- Glass Card Content -->
+        <div class="glass-card p-8 text-center relative overflow-hidden">
+            <!-- Subtle construction element (brick) -->
+            <div class="flex justify-center opacity-40 mb-6">
+                <div class="brick-icon"></div>
+            </div>
+
+            <h1 class="text-3xl h1-title mb-6">C’est noté !</h1>
+            
+            <p class="text-lg sub-text font-medium text-white leading-relaxed mb-8">
+                Tu fais désormais partie de la liste des testeurs. Merci pour ton aide, c'est ce qui me permet de construire un outil vraiment utile pour le terrain.
+            </p>
+            
+            <div class="h-px w-12 bg-white/10 mx-auto mb-8"></div>
+            
+            <div class="space-y-6">
+                <p class="text-sm text-slate-400 font-medium">
+                    <span class="text-[var(--brand-blue)] uppercase text-[10px] tracking-widest block mb-2 font-bold">Étape suivante</span>
+                    Je te recontacte par email dès que les premières briques sont prêtes à être testées.
+                </p>
+            </div>
+
+            <footer class="mt-12 pt-8 border-t border-white/5 opacity-80">
+                <p class="text-sm italic text-slate-300">
+                    D’ici là bon courage pour tes travaux,<br>
+                    <span class="font-bold text-white not-italic mt-2 block">Florian</span>
+                </p>
+            </footer>
+        </div>
+
+        <!-- Back Link (optional but good for UX) -->
+        <div class="mt-10 text-center">
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 hover:text-white transition-colors duration-300">
+                Retour au site
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>
