@@ -12,11 +12,18 @@ insta`).
 
 ## Décisions
 
-Rien encore. Une ligne par décision : le choix, la raison, ce que ça interdit, la date.
+Une ligne par décision : le choix, la raison, ce que ça interdit, la date.
+
+- Mesure d’audience par GTM (`GTM-M27JZQJN`), pas Vercel Analytics : le site est servi par GitHub
+  Pages (`CNAME`), un script Vercel n’y remonterait rien. 2026-10-28.
+- Encart Photowall retiré : le code FLO15 n’est plus valable. Ne pas le remettre sans nouveau code.
+  2026-10-28.
 
 ## Pièges
 
-Rien encore. Ce qui a coûté du temps une fois et le recoûtera sans cette ligne.
+Ce qui a coûté du temps une fois et le recoûtera sans cette ligne.
+
+- Nancy est la ville de l’Art nouveau, pas une « cité thermale » : la carte du 1901 l’avait écrit.
 
 ## Questions ouvertes
 
