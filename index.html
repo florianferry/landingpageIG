@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Flo Perspectives : rénovation, outillage et digital. L’Arsenal de l’outillage, le journal de chantier et Murmur, l’app qui chiffre un chantier phase par phase.">
-    <title>Flo Perspectives, rénovation et outillage à Nancy</title>
+    <title>Flo Perspectives, rénovation et outillage</title>
     <link rel="canonical" href="https://flo-perspectives.com/">
 
     <meta property="og:type" content="website">
@@ -174,17 +174,6 @@
         .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Toast */
-        #toast {
-            visibility: hidden; min-width: 280px; background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(8px); border: 1px solid rgba(52, 211, 153, 0.4); color: #fff;
-            text-align: center; border-radius: 16px; padding: 16px 24px; position: fixed; z-index: 100;
-            left: 50%; top: 20px; transform: translateX(-50%) translateY(-20px);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); opacity: 0;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-            font-family: var(--font-title); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px;
-        }
-        #toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); top: 40px; }
         
         /* Styles spécifiques Home */
         #section-home .section-header {
@@ -236,192 +225,241 @@
         }
         .text-gold { color: #fef3c7; }
         .bg-gold-glass { background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3); }
+        /* --- Accueil : preuves, dernière vidéo, Murmur, séjour, reels --- */
+        .proof-chip {
+            font-family: var(--font-sub); font-size: 12px; font-weight: 600; color: #fff;
+            padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+        }
+        .proof-chip b { color: var(--brand-light-green); }
+        .latest-card {
+            display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 14px; padding: 12px;
+            border-radius: 1.5rem; background: var(--card-bg); border: 1px solid rgba(160, 232, 223, 0.18);
+        }
+        .latest-thumb { position: relative; display: block; aspect-ratio: 9/16; border-radius: 1rem; overflow: hidden; background: #000; }
+        .latest-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+        .latest-play {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; border-radius: 50%;
+            display: grid; place-items: center; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px);
+        }
+        .new-tag {
+            display: inline-block; font-family: var(--font-title); font-weight: 800; font-size: 10px; line-height: 1; letter-spacing: 0.12em;
+            text-transform: uppercase; color: #04232A; background: var(--brand-light-green); padding: 4px 7px; border-radius: 6px;
+        }
+        .latest-action {
+            display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 9px 11px;
+            border-radius: 12px; background: rgba(255,255,255,0.06); color: #fff; text-align: left; text-decoration: none;
+            font-family: var(--font-sub); font-size: 12.5px; font-weight: 600; line-height: 1.2; cursor: pointer;
+        }
+        .latest-action:hover { background: rgba(255,255,255,0.1); }
+
+        /* Encart aux couleurs de Murmur (ardoise et orange, charte de murmurapp.fr). */
+        .murmur-card {
+            position: relative; overflow: hidden; padding: 20px; border-radius: 1.5rem; color: #fff;
+            background: #1E293B radial-gradient(circle at 100% 0%, rgba(234, 88, 12, 0.28), transparent 60%);
+            border: 1px solid rgba(251, 146, 60, 0.4); box-shadow: 0 12px 30px -10px rgba(234, 88, 12, 0.4);
+        }
+        .murmur-eyebrow { font-family: var(--font-title); font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #FDBA74; }
+        .murmur-list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 4px; font-size: 13px; }
+        .murmur-list li::before { content: '✓'; color: #FB923C; font-weight: 700; margin-right: 8px; }
+        .murmur-site {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px;
+            border-radius: 14px; background: #C2410C; color: #fff; text-decoration: none; transition: background 0.2s ease;
+        }
+        .murmur-site:hover { background: #EA580C; }
+        .murmur-site b { display: block; font-family: var(--font-title); font-weight: 800; font-size: 14px; line-height: 1.2; }
+        .murmur-site small { display: block; margin-top: 4px; font-family: var(--font-sub); font-size: 12px; line-height: 1.3; opacity: 0.92; }
+        .murmur-badges { margin-top: 12px; display: flex; justify-content: center; }
+
+        .search-teaser {
+            margin-top: 10px; width: 100%; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px;
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.07); color: #94a3b8; font-family: var(--font-sub);
+            font-size: 14px; text-align: left; cursor: text;
+        }
+        .stay-tag {
+            font-family: var(--font-title); font-weight: 800; font-size: 10px; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase;
+            color: #E9C46A; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.35); padding: 5px 8px; border-radius: 6px;
+        }
+        .stay-btn {
+            margin-top: 4px; padding: 11px 16px; border-radius: 12px; background: #E9C46A; color: #2A1E00;
+            font-family: var(--font-title); font-weight: 800; font-size: 12px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .reel-tile { position: relative; display: block; aspect-ratio: 9/16; border-radius: 1.25rem; overflow: hidden; background: #000; }
+        .reel-tile img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .reel-cap {
+            position: absolute; inset: auto 0 0 0; padding: 10px; color: #fff; font-family: var(--font-sub); font-size: 12px; line-height: 1.3;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+        }
+        .reel-cap b { display: block; font-family: var(--font-title); font-weight: 800; font-size: 14px; color: var(--brand-light-green); margin-bottom: 3px; }
+
+        /* Recherche de l'Arsenal */
+        .arsenal-search {
+            display: flex; align-items: center; gap: 10px; padding: 0 14px; border-radius: 14px;
+            background: rgba(0,0,0,0.35); border: 1px solid rgba(0, 168, 186, 0.45);
+        }
+        .arsenal-search input {
+            flex: 1; min-width: 0; border: 0; background: transparent; color: #fff; padding: 12px 0;
+            font-family: var(--font-sub); font-size: 16px; outline: none;
+        }
     </style>
 </head>
 
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M27JZQJN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <div id="toast" role="status" aria-live="polite">
-        <div class="w-5 h-5 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center">
-            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-        </div>
-        <span>Inscription validée !</span>
-    </div>
 
 
     <div id="section-home" class="fade-in">
         <div class="max-w-md mx-auto px-6 pb-20">
             
-            <header class="pt-20 pb-12 flex flex-col items-center text-center">
-                <div class="mb-8">
-                    <div class="w-24 h-24 rounded-full overflow-hidden shadow-2xl bg-slate-800">
-                        <img src="assets/img/profil.webp" alt="Flo Perspectives" width="96" height="96" fetchpriority="high" decoding="async" class="w-full h-full object-cover">
+            <header class="pt-16 pb-10 flex flex-col items-center text-center">
+                <div class="mb-6">
+                    <div class="w-24 h-24 rounded-full overflow-hidden shadow-2xl bg-slate-800 ring-4 ring-[var(--brand-light-green)]/20">
+                        <img src="assets/img/profil.webp" alt="Florian, Flo Perspectives" width="96" height="96" fetchpriority="high" decoding="async" class="w-full h-full object-cover">
                     </div>
                 </div>
                 <h1 class="text-2xl h1-title tracking-tight text-[var(--brand-light-green)]">FLO PERSPECTIVES</h1>
-                <div class="mt-8 space-y-6 px-2">
-                    <p class="text-xl sub-text font-medium text-white leading-relaxed max-w-[300px] mx-auto">
-                        Consultant digital devenu artisan passionné.
-                    </p>
-                    <div class="flex justify-center items-center space-x-3 text-[10px] sub-text font-bold uppercase tracking-[0.3em] text-slate-500">
-                        <span>Rénovation</span><span class="w-1 h-1 bg-slate-700 rounded-full"></span>
-                        <span>Outillage</span><span class="w-1 h-1 bg-slate-700 rounded-full"></span>
-                        <span>Digital</span>
-                    </div>
+                <p class="mt-5 text-xl sub-text font-medium text-white leading-snug max-w-[310px] mx-auto">
+                    Je rénove de A à Z et je partage mes outils et mes bons plans.
+                </p>
+                <div class="mt-5 flex flex-wrap justify-center gap-2">
+                    <span class="proof-chip"><b>3,6 M</b> de vues sur l’ossature</span>
+                    <span class="proof-chip"><b>60+</b> outils de mon atelier</span>
                 </div>
             </header>
 
-            <div class="space-y-14">
-                
+            <div class="space-y-12">
+
+                <!-- Ma dernière vidéo : à mettre à jour à chaque reel (lien, image, titre, phrase). -->
                 <section>
-                    <button onclick="switchView('arsenal'); trackClick('Open_Arsenal');" class="w-full glass-card border-[var(--brand-blue)]/40 flex items-center p-6 text-white rounded-3xl group interactive-link shadow-xl cursor-pointer">
-                        <div class="bg-[var(--brand-blue)]/20 p-3 rounded-2xl mr-4">
-                            <svg class="w-7 h-7 text-[var(--brand-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18.5 7.5L12 14L8.5 10.5L3 16V20H21V7.5H18.5Z M3 16L6 13 M6 20V17 M9 20V17 M12 20V17 M15 20V17 M18 20V17 M7 7.5H18.5" /></svg>
+                    <h2 class="section-header">Ma dernière vidéo</h2>
+                    <div class="latest-card">
+                        <a href="https://www.instagram.com/reel/DQ_rNNnjONw/" onclick="trackClick('Latest_Reel')" target="_blank" rel="noopener" class="latest-thumb" aria-label="Revoir la vidéo sur Instagram">
+                            <img src="assets/img/douche.webp" width="160" height="284" loading="lazy" decoding="async" alt="">
+                            <span class="latest-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg></span>
+                        </a>
+                        <div class="min-w-0">
+                            <span class="new-tag">Nouveau</span>
+                            <h3 class="h3-button text-[15px] leading-tight mt-2 mb-1">Douche en blocs à emboîter</h3>
+                            <p class="sub-text text-[13px] text-slate-300 leading-snug mb-3">Tout ce que tu m’as demandé en commentaire.</p>
+                            <div class="flex flex-col gap-1.5">
+                                <button type="button" onclick="openArsenal(); trackClick('Latest_Reel_Tools');" class="latest-action">Mes outils <span aria-hidden="true">→</span></button>
+                                <a href="https://www.murmurapp.fr/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=derniere_video" onclick="trackClick('Latest_Reel_Murmur')" target="_blank" rel="noopener" class="latest-action">Chiffrer ma salle de bains <span aria-hidden="true">→</span></a>
+                            </div>
                         </div>
-                        <div class="flex-1 text-left">
-                            <h3 class="h3-button text-sm tracking-tight uppercase">L’Arsenal de Nancy</h3>
-                            <p class="text-[12px] sub-text opacity-70">Mon outillage organisé par métier</p>
-                        </div>
-                        <svg class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
+                    </div>
                 </section>
 
                 <section>
                     <h2 class="section-header">Mon application</h2>
-                    <a href="https://www.murmurapp.fr/" onclick="trackClick('Murmur_App')" target="_blank" rel="noopener" class="cta-priority flex items-center p-6 text-white rounded-3xl group interactive-link no-underline">
-                        <div class="bg-white/10 p-3 rounded-2xl mr-4 z-10"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
-                        <div class="flex-1 text-left z-10">
-                            <h3 class="h3-button text-sm tracking-tight uppercase leading-tight">Murmur, ton chantier chiffré phase par phase</h3>
-                            <p class="text-[12px] sub-text opacity-90 font-medium leading-none mt-1">Demander une invitation à l’accès anticipé</p>
+                    <div class="murmur-card">
+                        <div class="flex items-center justify-between gap-3">
+                            <img src="assets/img/murmur/murmur-lockup.png" width="116" height="24" alt="Murmur" class="h-6 w-auto">
+                            <span class="murmur-eyebrow">Gratuit, sans compte</span>
                         </div>
-                        <svg class="h-5 w-5 opacity-60 group-hover:opacity-100 transition-opacity animate-arrow-bounce z-10 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </section>
-
-                <section id="art-nouveau-project">
-                    <h2 class="section-header">Mon projet Art nouveau</h2>
-                    <div class="art-nouveau-card group cursor-pointer">
-                        <!-- Image de fond -->
-                        <div class="absolute inset-0 z-0">
-                            <img src="assets/img/le1901.webp" width="900" height="599" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000" alt="Le 1901 Nancy, salon rénové aux papiers peints Art Nouveau">
-                            <div class="absolute inset-0 art-nouveau-gradient"></div>
-                        </div>
-                        
-                        <!-- Contenu interactif -->
-                        <div class="relative z-10 p-7 flex flex-col items-start justify-center min-h-[190px] max-w-[260px]">
-                            <div class="mb-3 px-1.5 py-1 rounded-md bg-gold-glass inline-flex items-center justify-center h-5">
-                                <span class="text-[7px] font-extrabold uppercase tracking-[0.15em] text-gold leading-none">Rénovation terminée</span>
-                            </div>
-                            <h3 class="h3-button text-base text-white mb-1.5 uppercase leading-tight tracking-tight">Le 1901 Nancy</h3>
-                            <p class="text-[12px] sub-text text-slate-300 mb-5 leading-relaxed opacity-90">Rénovation d’exception au cœur de la capitale de l’Art nouveau.</p>
-                            
-                            <a href="https://le1901-nancy.fr" onclick="trackClick('Art_Nouveau_Site')" target="_blank" rel="noopener" class="inline-flex items-center text-[10px] h3-button text-gold uppercase tracking-[0.25em] font-bold no-underline group/btn">
-                                <span class="border-b border-gold/30 group-hover/btn:border-gold transition-colors pb-0.5">Visiter le site</span>
-                                <svg class="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        <h3 class="h1-title text-[19px] leading-tight mt-4 mb-2">Combien va te coûter ton chantier&nbsp;?</h3>
+                        <p class="sub-text text-[14px] leading-snug text-slate-200 mb-3">Tu entres tes mesures, Murmur te sort les fournitures, les quantités et le budget, phase par phase.</p>
+                        <ul class="murmur-list sub-text">
+                            <li>Liste de courses en quantités magasin</li>
+                            <li>Étapes de pose et temps de séchage</li>
+                        </ul>
+                        <a href="https://www.murmurapp.fr/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=landing" onclick="trackClick('Murmur_Site')" target="_blank" rel="noopener" class="murmur-site">
+                            <span><b>Estimer mes travaux sur murmurapp.fr</b><small>Calculateurs, checklists et guides, dans ton navigateur</small></span>
+                            <span aria-hidden="true" class="text-lg">→</span>
+                        </a>
+                        <!-- Badge selon le téléphone, voir detectStore() : Google Play partout, sauf sur iPhone et iPad. -->
+                        <div id="store-play" class="murmur-badges">
+                            <a href="https://play.google.com/store/apps/details?id=fr.murmurapp.app&amp;referrer=utm_source%3Dinstagram%26utm_medium%3Dbio" onclick="trackClick('Murmur_Google_Play')" target="_blank" rel="noopener">
+                                <img src="assets/img/murmur/google-play.png" width="135" height="40" alt="Disponible sur Google Play" class="h-10 w-auto">
                             </a>
                         </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="section-header">Atelier & Fabrication</h2>
-                    <div class="glass-card rounded-[2rem] p-4 flex items-center space-x-5 shadow-lg border border-[var(--brand-light-green)]/10">
-                        <a href="https://www.instagram.com/reel/DIg27phxj3G/" target="_blank" rel="noopener" class="w-24 aspect-square rounded-2xl overflow-hidden bg-black/50 relative group block flex-shrink-0">
-                            <img src="assets/img/rack.webp" width="96" height="96" loading="lazy" decoding="async" alt="Rack à serre-joints fabriqué à l’atelier" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/20"><svg class="w-8 h-8 text-white fill-current opacity-90" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                        </a>
-                        <div class="flex-1 py-1 text-left">
-                            <div class="flex items-center space-x-2 mb-1.5">
-                                <h3 class="h3-button text-xs text-white uppercase tracking-tight">Rack Serre-joints</h3>
-                                <span class="bg-[var(--brand-light-green)]/20 text-[var(--brand-light-green)] text-[8px] font-bold px-1.5 py-0.5 rounded-md uppercase">Guide PDF</span>
-                            </div>
-                            <p class="text-[13px] sub-text text-slate-400 leading-snug mb-4">Plan complet pour fabriquer ton rack modulaire.</p>
-                            <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view?usp=sharing" onclick="trackClick('Download_PDF_Rack')" target="_blank" rel="noopener" class="inline-flex items-center text-[10px] h3-button text-[var(--brand-light-green)] uppercase tracking-widest font-bold no-underline">
-                                Télécharger le plan <svg class="w-3 h-3 ml-2 animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </a>
+                        <!-- À relier à la fiche App Store dès qu’Apple valide l’app. -->
+                        <div id="store-ios" class="murmur-badges hidden">
+                            <span class="flex items-center gap-3">
+                                <img src="assets/img/murmur/app-store.svg" width="120" height="40" alt="Télécharger dans l’App Store" class="h-10 w-auto opacity-40">
+                                <small class="sub-text text-[12px] font-semibold text-[#FDBA74]">Bientôt sur iPhone</small>
+                            </span>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h2 class="section-header">Journal de Chantier</h2>
-                    <div class="grid grid-cols-2 gap-4">
-                        <a href="https://www.instagram.com/reel/C_BL-v_oTNv/" target="_blank" rel="noopener" class="aspect-[9/16] rounded-[1.25rem] bg-black relative overflow-hidden group interactive-link block shadow-lg">
-                            <img src="assets/img/ossature.webp" width="160" height="284" loading="lazy" decoding="async" alt="Pose d’une ossature Optima" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
-                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/15 backdrop-blur-[4px] rounded-full p-3 border border-white/25 z-10"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent p-3 flex flex-col justify-end z-5">
-                                <div class="space-y-1.5 text-white">
-                                    <div class="flex items-center space-x-2"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="text-[10px] font-bold">3,6 M</span></div>
-                                    <div class="flex items-center space-x-2"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="text-[10px] font-bold">7,9 k</span></div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.instagram.com/reel/DQ_rNNnjONw/" target="_blank" rel="noopener" class="aspect-[9/16] rounded-[1.25rem] bg-black relative overflow-hidden group interactive-link block shadow-lg">
-                            <img src="assets/img/douche.webp" width="160" height="284" loading="lazy" decoding="async" alt="Montage d’une douche en blocs à emboîter" class="w-full h-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105">
-                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/15 backdrop-blur-[4px] rounded-full p-3 border border-white/25 z-10"><svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent p-3 flex flex-col justify-end z-5">
-                                <div class="space-y-1.5 text-white">
-                                    <div class="flex items-center space-x-2"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="text-[10px] font-bold">5,2 k</span></div>
-                                    <div class="flex items-center space-x-2"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="text-[10px] font-bold">5,2 k</span></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="section-header">Espace Pro</h2>
-                    <a href="https://beacons.ai/flo_perspectives/mediakit" target="_blank" rel="noopener" class="w-full glass-card border-[var(--brand-blue)]/40 flex items-center p-6 text-white rounded-3xl group interactive-link shadow-xl no-underline">
+                    <h2 class="section-header">Mon outillage</h2>
+                    <button onclick="openArsenal(); trackClick('Open_Arsenal');" class="w-full glass-card border-[var(--brand-blue)]/40 flex items-center p-5 text-white rounded-3xl group interactive-link shadow-xl cursor-pointer">
                         <div class="bg-[var(--brand-blue)]/20 p-3 rounded-2xl mr-4">
-                            <svg class="w-6 h-6 text-[var(--brand-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z"/></svg>
+                            <svg class="w-6 h-6 text-[var(--brand-light-green)]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
                         </div>
                         <div class="flex-1 text-left">
-                            <h3 class="h3-button text-sm tracking-tight uppercase">Kit média</h3>
-                            <p class="text-[12px] sub-text opacity-70">Partenariats et collaborations</p>
+                            <h3 class="h3-button text-sm tracking-tight uppercase">L’Arsenal</h3>
+                            <p class="text-[13px] sub-text text-slate-300">Mon outillage classé par métier et par budget</p>
                         </div>
-                        <svg class="h-5 w-5 opacity-40 group-hover:opacity-100 transition-opacity animate-arrow-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="h-5 w-5 opacity-60 group-hover:opacity-100 transition-opacity animate-arrow-bounce ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <button type="button" onclick="openArsenal({ focus: true }); trackClick('Open_Arsenal_Search');" class="search-teaser">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        Cherche un outil : « laser », « Festool »…
+                    </button>
+                </section>
+
+                <section>
+                    <h2 class="section-header">Mon dernier chantier</h2>
+                    <a href="https://le1901-nancy.fr/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=landing" onclick="trackClick('Art_Nouveau_Site')" target="_blank" rel="noopener" class="art-nouveau-card group block no-underline">
+                        <div class="absolute inset-0 z-0">
+                            <img src="assets/img/le1901.webp" width="900" height="599" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000" alt="Le 1901 Nancy, salon rénové aux boiseries Art nouveau">
+                            <div class="absolute inset-0 art-nouveau-gradient"></div>
+                        </div>
+                        <div class="relative z-10 p-6 flex flex-col items-start gap-2 min-h-[210px] max-w-[255px]">
+                            <span class="stay-tag">Rénovation terminée</span>
+                            <h3 class="h3-button text-lg text-gold uppercase leading-tight tracking-tight">Le 1901, Nancy</h3>
+                            <p class="text-[13px] sub-text text-slate-200 leading-snug">Mon plus gros projet, 50 m² Art nouveau, à louer pour tes séjours (4 voyageurs).</p>
+                            <span class="h3-button text-sm text-gold">dès 77,50 € la nuit</span>
+                            <span class="stay-btn">Réserver un séjour</span>
+                        </div>
                     </a>
                 </section>
 
                 <section>
-                    <h2 class="section-header">Newsletter</h2>
-                    <!-- Une seule voie d'écriture vers Brevo pour tous les sites : la route
-                         serveur de murmurapp.fr. Elle porte la clé API, le contrôle serveur et
-                         le rattrapage des contacts déjà connus. `audience` choisit la liste
-                         d'arrivée, ici la newsletter et non les bêta testeurs.
-                         Sans JavaScript, le POST natif part quand même et la route répond par
-                         une redirection vers sa page de confirmation. -->
-                    <form action="https://www.murmurapp.fr/api/waitlist"
-                        method="POST"
-                        onsubmit="return handleNewsletterSubmit(this)"
-                        class="p-6 glass-card border-dashed border-[var(--brand-blue)]/30 text-left">
-                        <h3 class="h3-button text-sm text-[var(--brand-light-green)] uppercase mb-2 leading-none">Les Perspectives de Flo</h3>
-                        <p class="text-[13px] sub-text text-slate-300 mb-5 leading-relaxed">Suivre les coulisses de la rénovation.</p>
-                        <input type="hidden" name="audience" value="newsletter">
-                        <input type="hidden" name="location" value="landing_insta">
-                        <div class="flex space-x-2">
-                            <input type="email" name="email" required placeholder="Ton adresse e-mail" aria-label="Ton adresse e-mail" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none">
-                            <button type="submit" class="bg-[var(--brand-blue)] text-white px-5 py-3 rounded-xl text-[10px] h3-button uppercase tracking-widest">OK</button>
+                    <h2 class="section-header">Plan gratuit</h2>
+                    <a href="https://drive.google.com/file/d/1t7ymzkezSooUijxFUMYZPvkv2Mu_WL9T/view?usp=sharing" onclick="trackClick('Download_PDF_Rack')" target="_blank" rel="noopener" class="glass-card rounded-[2rem] p-4 grid grid-cols-[80px_1fr] gap-4 items-center no-underline text-white border border-dashed border-[var(--brand-blue)]/40 interactive-link">
+                        <img src="assets/img/rack.webp" width="96" height="96" loading="lazy" decoding="async" alt="Rack à serre-joints fabriqué à l’atelier" class="w-20 h-20 rounded-2xl object-cover">
+                        <div class="text-left min-w-0">
+                            <h3 class="h3-button text-[15px] leading-tight mb-1">Le plan de mon rack à serre-joints</h3>
+                            <p class="text-[13px] sub-text text-slate-300 leading-snug">Cotes, découpes et quincaillerie, en PDF. Gratuit, sans inscription.</p>
                         </div>
-                        <!-- Piège à robots. Le nom `company` est celui que la route sait lire :
-                             rempli, elle répond un succès de façade sans rien enregistrer. -->
-                        <input type="text" name="company" id="nl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
-                        <p id="nl-feedback" role="status" aria-live="polite" class="text-[11px] sub-text mt-3 leading-relaxed hidden"></p>
-                    </form>
+                        <span class="col-span-2 text-center rounded-xl bg-[var(--brand-blue)] py-3 text-[12px] h3-button uppercase tracking-wider">Télécharger le plan (PDF)</span>
+                    </a>
                 </section>
 
-                <div class="grid grid-cols-4 gap-4 px-2 py-8 opacity-60">
-                    <a href="https://www.instagram.com/flo_perspectives/" target="_blank" rel="me noopener" aria-label="Instagram" class="flex justify-center text-white p-4 glass-card rounded-full interactive-link">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#fdf497"/><stop offset="45%" style="stop-color:#fd5949"/><stop offset="60%" style="stop-color:#d6249f"/><stop offset="90%" style="stop-color:#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#insta-gradient)"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" rel="me noopener" aria-label="TikTok" class="flex justify-center text-white p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg></a>
-                    <a href="https://www.youtube.com/@flo_perspectives" target="_blank" rel="me noopener" aria-label="YouTube" class="flex justify-center text-red-500 p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-                    <a href="https://www.linkedin.com/in/florian-ferry/" target="_blank" rel="me noopener" aria-label="LinkedIn" class="flex justify-center text-blue-400 p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                </div>
+                <section>
+                    <h2 class="section-header">Journal de chantier</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="https://www.instagram.com/reel/C_BL-v_oTNv/" onclick="trackClick('Reel_Ossature')" target="_blank" rel="noopener" class="reel-tile interactive-link">
+                            <img src="assets/img/ossature.webp" width="160" height="284" loading="lazy" decoding="async" alt="Pose d’une ossature Optima">
+                            <span class="reel-cap"><b>3,6 M de vues</b>Pose d’une ossature Optima</span>
+                        </a>
+                        <a href="https://www.instagram.com/reel/DQ_rNNnjONw/" onclick="trackClick('Reel_Douche')" target="_blank" rel="noopener" class="reel-tile interactive-link">
+                            <img src="assets/img/douche.webp" width="160" height="284" loading="lazy" decoding="async" alt="Montage d’une douche en blocs à emboîter">
+                            <span class="reel-cap"><b>5,2 k vues</b>Douche en blocs à emboîter</span>
+                        </a>
+                    </div>
+                </section>
 
-                <footer class="mt-8 pt-10 border-t border-white/5 text-center pb-20 opacity-20">
-                    <p class="text-[8px] h1-title tracking-[0.5em]">© 2026 FLO PERSPECTIVES</p>
+                <section class="space-y-3">
+                    <a href="https://beacons.ai/flo_perspectives/mediakit" onclick="trackClick('Media_Kit')" target="_blank" rel="noopener" class="flex items-center justify-between gap-3 px-5 py-4 rounded-2xl border border-white/10 text-slate-300 no-underline interactive-link">
+                        <span class="sub-text text-[14px] leading-snug"><b class="h3-button text-[13px] text-white">Marques et partenariats</b><br>Mon kit média</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <div class="grid grid-cols-4 gap-3">
+                        <a href="https://www.instagram.com/flo_perspectives/" target="_blank" rel="me noopener" aria-label="Instagram" class="flex justify-center text-white p-4 glass-card rounded-full interactive-link">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#fdf497"/><stop offset="45%" style="stop-color:#fd5949"/><stop offset="60%" style="stop-color:#d6249f"/><stop offset="90%" style="stop-color:#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#insta-gradient)"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@flo_perspectives" target="_blank" rel="me noopener" aria-label="TikTok" class="flex justify-center text-white p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V15.5c0 1.93-.53 3.81-1.56 5.37-1.72 2.61-4.84 4.04-7.9 3.65-2.53-.32-4.88-1.83-6.14-4.04C1.4 18.25 1.2 15.65 1.91 13.25c.87-2.92 3.4-5.25 6.4-5.88.39-.08.79-.12 1.19-.13V11.5c-.88.04-1.77.26-2.53.72-1.28.77-2.1 2.21-2.12 3.7-.01 1.05.34 2.11.99 2.94.94 1.22 2.45 1.92 3.97 1.84 1.24-.07 2.44-.68 3.16-1.7.53-.74.81-1.65.8-2.57V.02z"/></svg></a>
+                        <a href="https://www.youtube.com/@flo_perspectives" target="_blank" rel="me noopener" aria-label="YouTube" class="flex justify-center text-red-500 p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                        <a href="https://www.linkedin.com/in/florian-ferry/" target="_blank" rel="me noopener" aria-label="LinkedIn" class="flex justify-center text-blue-400 p-4 glass-card rounded-full interactive-link"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </section>
+
+                <footer class="mt-6 pt-8 border-t border-white/5 text-center pb-16">
+                    <p class="text-[11px] sub-text text-slate-500">© 2026 Flo Perspectives · Liens affiliés signalés dans l’Arsenal</p>
                 </footer>
             </div>
         </div>
@@ -436,13 +474,17 @@
                 </button>
                 <h2 class="h1-title text-2xl text-white tracking-tight leading-none">L’Arsenal</h2>
                 <p class="sub-text text-sm text-slate-400 mt-2 leading-tight">Les outils que j’utilise sur mes chantiers, classés par métier et par budget.</p>
-                <p class="text-[9px] text-slate-500 mt-2 font-medium bg-white/5 inline-block px-3 py-1 rounded-full border border-white/5">
+                <p class="text-[12px] text-slate-400 mt-3 font-medium bg-white/5 inline-block px-3 py-1 rounded-full border border-white/5">
                     Transparence : liens affiliés. Un achat par ces liens me reverse une commission.
                 </p>
             </header>
 
             <div class="sticky top-0 z-50 bg-[#0F172A]/95 backdrop-blur-xl -mx-6 px-6 py-5 border-b border-white/5 shadow-lg">
                 <div class="flex flex-col space-y-4">
+                    <label class="arsenal-search" for="arsenal-q">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <input id="arsenal-q" type="search" placeholder="Marque, outil, usage…" aria-label="Chercher un outil" autocomplete="off" enterkeyhint="search">
+                    </label>
                         <div class="flex space-x-2 overflow-x-auto hide-scrollbar w-full px-1">
                             <button onclick="filterTools('cat', 'Tous')" data-type="cat" data-val="Tous" class="filter-pill active-pill px-4 py-2.5 rounded-xl text-[11px] font-bold uppercase whitespace-nowrap">Tout</button>
                             
@@ -457,7 +499,7 @@
                             <button onclick="filterTools('cat', 'Support & Logistique')" data-type="cat" data-val="Support & Logistique" class="filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap">Support</button>
                         </div>
                     <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Gamme de prix</span>
+                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Gamme de prix</span>
                         <div class="flex bg-slate-800/50 rounded-lg p-1 border border-white/5">
                             <button onclick="filterTools('bud', 'Tous')" data-type="bud" data-val="Tous" class="budget-seg active-seg px-3 py-1.5 rounded-md text-[10px] font-bold text-white transition-all">Tous</button>
                             <button onclick="filterTools('bud', '€')" data-type="bud" data-val="€" class="budget-seg px-3 py-1.5 rounded-md text-[10px] text-slate-400 font-medium transition-all">DIY</button>
@@ -475,8 +517,8 @@
                 </div>
             </div>
 
-            <footer class="mt-20 border-t border-white/5 pt-10 text-center pb-20 opacity-20">
-                <p class="text-[8px] h1-title tracking-[0.5em]">© 2026 FLO PERSPECTIVES</p>
+            <footer class="mt-20 border-t border-white/5 pt-10 text-center pb-20">
+                <p class="text-[11px] sub-text text-slate-500">© 2026 Flo Perspectives</p>
             </footer>
         </div>
     </div>
@@ -486,167 +528,6 @@
         function trackClick(elementName) {
             if(window.dataLayer) window.dataLayer.push({ 'event': 'button_interaction', 'element_name': elementName });
         }
-
-        // --- VALIDATION NEWSLETTER ---
-        // Le POST part vers Brevo dans une iframe cachée : la réponse est illisible (cross-origin).
-        // Tout ce qui peut être filtré doit donc l'être avant l'envoi.
-        const NL_EMAIL_RE = /^[a-z0-9]([a-z0-9._%+-]*[a-z0-9])?@([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,24}$/;
-
-        // Domaines jetables : l'adresse existe le temps d'un café, puis pollue la liste.
-        const NL_DISPOSABLE = new Set([
-            'yopmail.com', 'yopmail.fr', 'jetable.org', 'mailinator.com', 'guerrillamail.com',
-            'sharklasers.com', '10minutemail.com', '10minutemail.net', 'tempmail.com', 'temp-mail.org',
-            'trashmail.com', 'throwawaymail.com', 'getnada.com', 'maildrop.cc', 'fakeinbox.com',
-            'mohmal.com', 'dispostable.com', 'mailnesia.com', 'spamgourmet.com', 'emailondeck.com',
-            'moakt.com', 'tempr.email', 'linshiyouxiang.net', 'mail-temporaire.fr'
-        ]);
-
-        // Domaines fréquents en France : sert à rattraper les fautes de frappe.
-        const NL_COMMON_DOMAINS = [
-            'gmail.com', 'hotmail.com', 'hotmail.fr', 'outlook.com', 'outlook.fr', 'live.fr',
-            'yahoo.com', 'yahoo.fr', 'orange.fr', 'wanadoo.fr', 'free.fr', 'sfr.fr', 'laposte.net',
-            'bbox.fr', 'numericable.fr', 'icloud.com', 'me.com', 'protonmail.com', 'proton.me', 'gmx.fr'
-        ];
-
-        function nlDistance(a, b) {
-            const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
-            for (let i = 1; i <= a.length; i++) {
-                let diag = prev[0];
-                prev[0] = i;
-                for (let j = 1; j <= b.length; j++) {
-                    const tmp = prev[j];
-                    prev[j] = Math.min(prev[j] + 1, prev[j - 1] + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1));
-                    diag = tmp;
-                }
-            }
-            return prev[b.length];
-        }
-
-        function nlSuggestDomain(domain) {
-            if (NL_COMMON_DOMAINS.includes(domain)) return null;
-            let best = null, bestScore = 3;
-            for (const candidate of NL_COMMON_DOMAINS) {
-                const score = nlDistance(domain, candidate);
-                // Seuil serré sur les domaines courts : « free.fr » et « gmx.fr » ne doivent pas se confondre.
-                const max = candidate.length <= 8 ? 1 : 2;
-                if (score <= max && score < bestScore) { best = candidate; bestScore = score; }
-            }
-            return best;
-        }
-
-        function nlFeedback(form, message, tone) {
-            const el = form.querySelector('#nl-feedback');
-            if (!el) return;
-            el.textContent = message;
-            el.classList.remove('hidden');
-            el.style.color = tone === 'error' ? '#f87171' : 'var(--brand-light-green)';
-        }
-
-        function nlClearFeedback(form) {
-            const el = form.querySelector('#nl-feedback');
-            if (el) { el.classList.add('hidden'); el.textContent = ''; }
-        }
-
-        // Un humain met plus de 2 secondes à lire le bloc et à taper son adresse. Un robot, non.
-        const NL_FORM_LOADED_AT = Date.now();
-        let nlSuggestionPending = null;
-
-        function handleNewsletterSubmit(form) {
-            const input = form.querySelector('input[name="email"]');
-            const value = (input.value || '').trim().toLowerCase();
-            input.value = value;
-
-            if (form.querySelector('#nl-hp').value !== '') return false;
-            if (Date.now() - NL_FORM_LOADED_AT < 2000) {
-                nlFeedback(form, 'Prends le temps de vérifier ton adresse, puis réessaie.', 'error');
-                return false;
-            }
-
-            if (!NL_EMAIL_RE.test(value) || value.length > 254 || value.includes('..')) {
-                nlFeedback(form, 'Cette adresse ne ressemble pas à un email valide.', 'error');
-                input.focus();
-                return false;
-            }
-
-            const domain = value.split('@')[1];
-            if (NL_DISPOSABLE.has(domain)) {
-                nlFeedback(form, 'Les adresses jetables ne reçoivent pas la newsletter. Mets ton adresse habituelle.', 'error');
-                input.focus();
-                return false;
-            }
-
-            // Faute de frappe probable : on demande confirmation une fois, on n'impose rien.
-            const suggestion = nlSuggestDomain(domain);
-            if (suggestion && nlSuggestionPending !== value) {
-                nlSuggestionPending = value;
-                input.value = value.replace('@' + domain, '@' + suggestion);
-                nlFeedback(form, 'Corrigé en ' + suggestion + '. Valide à nouveau, ou remets ton adresse d’origine.', 'error');
-                input.focus();
-                return false;
-            }
-
-            nlSendNewsletter(form, value);
-            return false;
-        }
-
-        // La route de murmurapp.fr répond en JSON et autorise cette origine :
-        // contrairement à l'ancien POST vers une iframe, on sait vraiment si
-        // l'inscription a été enregistrée, et le message le dit.
-        async function nlSendNewsletter(form, email) {
-            const toast = document.getElementById('toast');
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            trackClick('Newsletter_Submit');
-            submitBtn.innerHTML = "..."; submitBtn.disabled = true;
-
-            let message = 'Inscription enregistrée. À très vite dans ta boîte mail.';
-            let tone = 'ok';
-            let showToast = true;
-
-            try {
-                const res = await fetch(form.action, {
-                    method: 'POST',
-                    headers: { 'content-type': 'application/json' },
-                    body: JSON.stringify({
-                        email,
-                        company: '',
-                        location: form.querySelector('input[name="location"]').value,
-                        audience: form.querySelector('input[name="audience"]').value
-                    })
-                });
-                const data = await res.json().catch(() => null);
-
-                if (res.ok && data && data.ok) {
-                    form.reset();
-                    nlSuggestionPending = null;
-                } else if (data && data.error === 'duplicate') {
-                    // Déjà inscrit n'est pas une panne : on le dit sans alarmer.
-                    message = 'Tu es déjà inscrit, ta place est gardée.';
-                    form.reset();
-                    showToast = false;
-                } else if (data && data.error === 'invalid_email') {
-                    message = 'Cette adresse a été refusée. Vérifie-la et réessaie.';
-                    tone = 'error'; showToast = false;
-                } else {
-                    message = 'L’enregistrement a échoué. Réessaie dans un instant.';
-                    tone = 'error'; showToast = false;
-                }
-            } catch {
-                message = 'Connexion impossible. Réessaie dans un instant.';
-                tone = 'error'; showToast = false;
-            }
-
-            submitBtn.innerHTML = originalText; submitBtn.disabled = false;
-            nlFeedback(form, message, tone);
-            if (showToast && toast) {
-                toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 4000);
-            }
-        }
-
-        document.addEventListener('input', (e) => {
-            if (e.target.matches('form input[name="email"]')) nlClearFeedback(e.target.form);
-        });
 
         // --- 2. CONFIGURATION & STATE ---
         const CONFIG = {
@@ -720,6 +601,11 @@
 
         // Point de départ de l'historique, sans le hash, pour que le retour retombe sur une URL propre.
         history.replaceState({ view: 'home' }, '', location.pathname + location.search);
+        window.openArsenal = function(opts = {}) {
+            if (document.getElementById('section-arsenal').classList.contains('hidden')) switchView('arsenal');
+            if (opts.focus) document.getElementById('arsenal-q').focus({ preventScroll: true });
+        };
+
         // Lien direct partageable : flo-perspectives.com/#arsenal
         if (location.hash === '#arsenal') switchView('arsenal');
 
@@ -742,7 +628,7 @@
                     return obj;
                 }).filter(t => t && t.marque);
 
-                renderCatalog(state.tools);
+                applyFilters();
             } catch (e) {
                 document.getElementById('arsenal-grid').innerHTML = '<div class="col-span-2 text-center py-10 text-red-400">Le catalogue n’a pas pu se charger. Recharge la page.</div>';
             }
@@ -812,15 +698,42 @@
             if (type === 'cat') updateUI('.filter-pill', 'filter-pill active-pill px-4 py-2.5 rounded-xl text-[11px] font-bold uppercase whitespace-nowrap', 'filter-pill px-4 py-2.5 rounded-xl text-[11px] font-medium text-slate-400 uppercase whitespace-nowrap');
             if (type === 'bud') updateUI('.budget-seg', 'budget-seg active-seg px-3 py-1.5 rounded-md text-[10px] font-bold text-white transition-all', 'budget-seg px-3 py-1.5 rounded-md text-[10px] text-slate-400 font-medium transition-all');
 
+            applyFilters();
+        };
+
+        // Recherche sans accents ni casse, sur la marque, le modèle, la catégorie et la description.
+        // Chaque mot tapé doit se retrouver quelque part : « festool scie » trouve la TSC 55.
+        const normalize = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        function applyFilters() {
+            if (!state.tools.length) return;
             const activeCat = document.querySelector('.filter-pill.active-pill')?.dataset.val || 'Tous';
             const activeBud = document.querySelector('.budget-seg.active-seg')?.dataset.val || 'Tous';
+            const words = normalize(document.getElementById('arsenal-q').value.trim()).split(/\s+/).filter(Boolean);
 
-            const filtered = state.tools.filter(t => 
-                (activeCat === 'Tous' || t.categorie === activeCat) && 
-                (activeBud === 'Tous' || t.budget === activeBud)
+            const filtered = state.tools.filter(t =>
+                (activeCat === 'Tous' || t.categorie === activeCat) &&
+                (activeBud === 'Tous' || t.budget === activeBud) &&
+                words.every(w => normalize(`${t.marque} ${t.modele} ${t.categorie} ${t.description}`).includes(w))
             );
             renderCatalog(filtered);
-        };
+        }
+        let searchTimer;
+        document.getElementById('arsenal-q').addEventListener('input', () => {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(applyFilters, 120);
+        });
+
+        // --- 7. MURMUR : LE BON STORE SELON LE TÉLÉPHONE ---
+        // L'app est sur Google Play ; l'App Store attend la validation d'Apple. Un iPhone ou un iPad
+        // (les iPad récents se déclarent « Macintosh » avec un écran tactile) voit le badge App Store
+        // « bientôt », tous les autres le badge Google Play, qui reste aussi l'affichage sans JavaScript.
+        (function detectStore() {
+            const ua = navigator.userAgent;
+            const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+            if (!ios) return;
+            document.getElementById('store-play').classList.add('hidden');
+            document.getElementById('store-ios').classList.remove('hidden');
+        })();
     </script>
 </body>
 </html>
