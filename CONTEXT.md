@@ -9,8 +9,8 @@ insta`).
 ## État
 
 - Amorcé le 2026-08-03.
-- Murmur est sur Google Play (`fr.murmurapp.app`) ; l’app iPhone attend la validation d’Apple
-  (2026-10). L’encart affiche l’App Store « bientôt » sur iPhone : à relier à la fiche dès sa sortie.
+- Murmur est sur Google Play (`fr.murmurapp.app`) et sur l’App Store depuis le 2026-11-02
+  (id6763272559, bundle iOS `com.murmur.reno`) ; l’encart affiche les deux badges.
 - Le 1901 Nancy est une location courte durée (réservation via Cocoonr) : la carte mène à la
   réservation.
 
