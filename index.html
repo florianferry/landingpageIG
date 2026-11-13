@@ -268,7 +268,7 @@
         .murmur-site:hover { background: #EA580C; }
         .murmur-site b { display: block; font-family: var(--font-title); font-weight: 800; font-size: 14px; line-height: 1.2; }
         .murmur-site small { display: block; margin-top: 4px; font-family: var(--font-sub); font-size: 12px; line-height: 1.3; opacity: 0.92; }
-        .murmur-badges { margin-top: 12px; display: flex; justify-content: center; }
+        .murmur-badges { margin-top: 12px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
         .search-teaser {
             margin-top: 10px; width: 100%; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px;
@@ -366,18 +366,14 @@
                             <span><b>Estimer mes travaux sur murmurapp.fr</b><small>Calculateurs, checklists et guides, dans ton navigateur</small></span>
                             <span aria-hidden="true" class="text-lg">→</span>
                         </a>
-                        <!-- Badge selon le téléphone, voir detectStore() : Google Play partout, sauf sur iPhone et iPad. -->
-                        <div id="store-play" class="murmur-badges">
+                        <!-- Badges officiels FR, côte à côte, même hauteur (40 px). L’App Store en premier, comme le demande Apple. -->
+                        <div class="murmur-badges">
+                            <a href="https://apps.apple.com/fr/app/murmur-travaux-r%C3%A9novation/id6763272559?pt=128792374&amp;ct=instagram_bio&amp;mt=8" onclick="trackClick('Murmur_App_Store')" target="_blank" rel="noopener">
+                                <img src="assets/img/murmur/app-store.svg" width="127" height="40" alt="Télécharger dans l’App Store" class="h-10 w-auto">
+                            </a>
                             <a href="https://play.google.com/store/apps/details?id=fr.murmurapp.app&amp;referrer=utm_source%3Dinstagram%26utm_medium%3Dbio" onclick="trackClick('Murmur_Google_Play')" target="_blank" rel="noopener">
                                 <img src="assets/img/murmur/google-play.png" width="135" height="40" alt="Disponible sur Google Play" class="h-10 w-auto">
                             </a>
-                        </div>
-                        <!-- À relier à la fiche App Store dès qu’Apple valide l’app. -->
-                        <div id="store-ios" class="murmur-badges hidden">
-                            <span class="flex items-center gap-3">
-                                <img src="assets/img/murmur/app-store.svg" width="120" height="40" alt="Télécharger dans l’App Store" class="h-10 w-auto opacity-40">
-                                <small class="sub-text text-[12px] font-semibold text-[#FDBA74]">Bientôt sur iPhone</small>
-                            </span>
                         </div>
                     </div>
                 </section>
@@ -722,18 +718,6 @@
             clearTimeout(searchTimer);
             searchTimer = setTimeout(applyFilters, 120);
         });
-
-        // --- 7. MURMUR : LE BON STORE SELON LE TÉLÉPHONE ---
-        // L'app est sur Google Play ; l'App Store attend la validation d'Apple. Un iPhone ou un iPad
-        // (les iPad récents se déclarent « Macintosh » avec un écran tactile) voit le badge App Store
-        // « bientôt », tous les autres le badge Google Play, qui reste aussi l'affichage sans JavaScript.
-        (function detectStore() {
-            const ua = navigator.userAgent;
-            const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-            if (!ios) return;
-            document.getElementById('store-play').classList.add('hidden');
-            document.getElementById('store-ios').classList.remove('hidden');
-        })();
     </script>
 </body>
 </html>
